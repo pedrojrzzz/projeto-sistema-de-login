@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Página inicial</title>
-    <link rel="stylesheet" href="../../../frontend/assets/css/style.css"/>
+    <link rel="stylesheet" href="/assets/css/style.css"/>
   </head>
   <body>
     <nav>
@@ -50,7 +50,7 @@
             <br>
 
             <form action="/registerNewUS3r" method="POST" class="formularioCadastro">
-            <input type="hidden" name="_csrf" value="<%csrfToken%>">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             
             <input type="text" name="nome" placeholder="Nome completo" class="cadastroNome" required/>
              <br>

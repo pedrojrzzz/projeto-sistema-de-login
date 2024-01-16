@@ -1,0 +1,57 @@
+body {
+    background-color: grey;
+    font-family: cursive;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+.top-menu {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.49);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.top-menu a {
+    text-decoration: none;
+    color: white;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.top-menu a:hover {
+    opacity: 0.7;
+}
+.top-menu .logoUser {
+    height: 40px;
+    width: 40px;
+    background-image: url(../img/usuario-de-perfil.png);
+    background-size: 100%;
+    background-position: center;
+}
+
+.top-menu .dropdown-menu {
+    display: none;
+}
+
+
+.abaixo {
+    height: 90vh;
+    display: grid;
+    grid-template-columns: 15% 1fr;
+    grid-template-rows: 1fr;
+    
+}
+
+nav {
+    background-color: red;
+    overflow: hidden;
+    text-align: center;
+}
+
+main {
+    background-color: yellow;
+    overflow: hidden;
+}

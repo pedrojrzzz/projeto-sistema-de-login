@@ -1,16 +1,6 @@
 const express = require('express')
 const route = express.Router()
 
-const cors = require('cors')
-const corsConfig = {
-    origin : 'http://127.0.0.1:5500',
-    optionsSuccessStatus: 200,
-}
-const corsOptions = {
-    origin: '*',
-    methods: 'POST',
-    optionsSuccessStatus: 204,
-};
 
 
 const homeController = require('./src/controllers/homeController')
@@ -22,6 +12,16 @@ route.get('/', homeController.rendPaginaInicial)
 
 // Rotas de cadastro
 route.post('/registerNewUS3r', registroController.cadastroUsuario)
+
+route.get('/a', (req,res) => {
+    res.send('Hello')
+})
+
+
+// Rotas de administrador
+route.get('/administrativePanel', (req, res)=> {
+    res.render('administrativePanel')
+})
 
 
 
