@@ -1,0 +1,259 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+body {
+    background-image: url('../img/painting-mountain-lake-with-mountain-background.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+
+nav {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    backdrop-filter: blur(6px);
+}
+
+nav:hover {
+    backdrop-filter: blur(5px);
+    background-color: #607D77;
+    transition: 0.5s ease;
+}
+
+.logo {
+    height: 60px;
+    width: 150px;
+    background-image: url(../img/logo.png);
+    background-size: cover;
+    position: absolute;
+    left: 25px;
+}
+
+.logo:hover {
+    cursor: pointer;
+}
+
+nav ul li {
+    display: inline-block;
+}
+
+nav ul li a {
+    display: inline-block;
+    padding: 15px;
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+}
+
+nav ul li a:hover {
+    opacity: 0.5;
+}
+
+.cantoUser {
+    position: absolute;
+    right: 65px;
+}
+
+.cantoUser  a {
+    padding: 15px;
+}
+
+.dropdown-menu {
+    position: absolute;
+    width: 100px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.662);
+    background-color: #607D77;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px;
+    color: white;
+    font-weight: 500;
+    border-bottom: 0.3px solid rgba(35, 35, 35, 0.142);
+}
+
+.dropdown-menu a:hover {
+    opacity: 0.7;
+}
+.dropdown:hover .dropdown-menu {
+    transition: 0.2s ease; 
+    visibility: visible;
+    opacity: 1;
+}
+
+.logoUser {
+    height: 50px;
+    width: 50px;
+    background-image: url(../img/usuario-de-perfil.png);
+    background-size: 35px;
+    background-repeat: no-repeat;
+    background-position-x: 50%;
+    background-position-y: 50%;
+    cursor: pointer;
+}
+
+.logoUser:hover {
+    opacity: 0.7;
+}
+
+.dropdown:hover .logoUser {
+    opacity: 0.7;
+}
+
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Formulário cadastro */
+
+.divFormulario {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+.formCadastro {
+    margin: 0 auto;
+    margin-top: 60px;
+    position: absolute;
+    top: 5%;
+    min-height: 500px;
+    max-height: 800px;
+    width: 400px;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    background-image: url(../img/bgFormCadastro.jpg);
+    background-size: cover;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.413);
+}
+
+.formCadastro li {
+    color: white;
+}
+
+.formCadastro label {
+    font-size: 17px;
+    font-weight: 550;
+    color: white;
+}
+
+.formCadastro input {
+    margin-left: px;
+    width: 340px;
+    height: 35px;
+    margin-left: 17px;
+    border-radius: 20px;
+    border: none;
+    margin-top: 25px;
+    font-size: 14px;
+    text-indent: 2%;
+}
+
+.formCadastro input:focus {
+    background-color: rgb(235, 229, 229);
+    outline: none;
+    border: 0 none;
+    box-shadow: none;
+}
+
+.formCadastro::placeholder {
+    padding-left: 5px;
+}
+
+.formCadastro .submitCadastro {
+    color: black;
+    padding: 10px;
+    width: 340px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 17px;
+    background-color: white;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+    &::before{
+        content: ' ';
+        height: 100%;
+        width: 0%;
+        border-radius: 15px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: -1;
+    }
+}
+
+.formCadastro .submitCadastro:hover {
+    &::before {
+        background-color: greenyellow;
+        transition: 0.2s ease;
+        width: 100%;
+        
+    }
+}
+
+
+
+
+.formCadastro::backdrop {
+    backdrop-filter: blur(5px);
+}
+
+.divErro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35px;
+    width: 320px;
+    border-radius: 7px;
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.497);
+    background-color: rgb(214, 55, 55);
+    margin-left: 30px;
+}
+
+.divErro li {
+    list-style-type: none;
+    font-weight: 500;
+    
+}
+
+.divSuccess {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45px;
+    width: 320px;
+    border-radius: 7px;
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.497);
+    background-color: rgb(116, 228, 85);
+    margin-left: 30px;
+}
+
+.divSuccess li {
+    list-style-type: none;
+    font-weight: 500;
+    
+}

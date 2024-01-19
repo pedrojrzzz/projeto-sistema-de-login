@@ -114,7 +114,6 @@ nav ul li a:hover {
 }
 
 main {
-    position: relative;
 }
 
 /* Formulário cadastro */
@@ -226,91 +225,3 @@ main {
 
 /* ******************************************** */
 
-/*  Form login*/
-
-.fecharDialogLogin {
-    height: 30px;
-    width: 30px;
-    background-image: url(../img/iconX.png);
-    background-position: center;
-    background-size: cover;
-    color: white;
-    position: absolute;
-    top: 12px;
-    right: 10px;
-    cursor: pointer;
-}
-
-.fecharDialogLogin:hover {
-    opacity: 0.5;
-}
-
-.formLogin {
-    height: 300px;
-    width: 350px;
-    margin: 0 auto;
-    position: absolute;
-    top: 25%;
-    border: none;
-    border-radius: 10px;
-    padding: 10px;
-    background-image: url(../img/bgFormLogin.jpg);
-    background-size: cover;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.413);
-}
-
-.formLogin input {
-    margin-left: 10px;
-    width: 300px;
-    height: 35px;
-    border-radius: 20px;
-    border: none;
-    margin-top: 25px;
-    font-size: 14px;
-    text-indent: 2%;
-}
-
-.formLogin input:focus {
-    background-color: rgb(235, 229, 229);
-    outline: none;
-    border: 0 none;
-    box-shadow: none;
-}
-
-.formLogin button {
-    width: 300px;
-    height: 35px;
-    margin-top: 20px;
-    margin-left: 10px;
-    border-radius: 20px;
-    border: none;
-    color: black;
-    background-color: #fff;
-    font-size: 17px;
-    letter-spacing: 1px;
-    position: relative;
-    z-index: 2;
-    &::before{
-        content: ' ';
-        height: 100%;
-        width: 0%;
-        border-radius: 15px;
-        position: absolute;
-        left: 0;
-        top: 0;
-        z-index: -1;
-    }
-}
-
-
-.formLogin button:hover {
-    opacity: 0.7;
-    }
-
-
-.formLogin::backdrop{
-    backdrop-filter: blur(5px);
-}
-
-
-/* ******************************************** */

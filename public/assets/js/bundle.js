@@ -193,89 +193,6 @@ var cadastroValidator = /*#__PURE__*/function () {
 
 /***/ }),
 
-/***/ "./frontend/modules/dialogCadastro.js":
-/*!********************************************!*\
-  !*** ./frontend/modules/dialogCadastro.js ***!
-  \********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   modalCadastro: () => (/* binding */ modalCadastro)
-/* harmony export */ });
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : String(i); }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-var modalCadastro = /*#__PURE__*/function () {
-  function modalCadastro() {
-    _classCallCheck(this, modalCadastro);
-    this.modal = document.querySelector('.formCadastro');
-  }
-  _createClass(modalCadastro, [{
-    key: "abrirFormCadastro",
-    value: function abrirFormCadastro() {
-      this.modal.showModal();
-    }
-  }, {
-    key: "fecharFormCadastro",
-    value: function fecharFormCadastro() {
-      this.modal.close();
-    }
-  }]);
-  return modalCadastro;
-}();
-
-/***/ }),
-
-/***/ "./frontend/modules/dialogLogin.js":
-/*!*****************************************!*\
-  !*** ./frontend/modules/dialogLogin.js ***!
-  \*****************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   modalLogin: () => (/* binding */ modalLogin)
-/* harmony export */ });
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : String(i); }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-var modalLogin = /*#__PURE__*/function () {
-  function modalLogin() {
-    _classCallCheck(this, modalLogin);
-    this.modalLogin = document.querySelector('.formLogin');
-    this.modalEsqueceuSenha = document.querySelector('.formEsqueceuSenha');
-  }
-  _createClass(modalLogin, [{
-    key: "abrirFormLogin",
-    value: function abrirFormLogin() {
-      this.modalLogin.showModal();
-    }
-  }, {
-    key: "fecharFormLogin",
-    value: function fecharFormLogin() {
-      this.modalLogin.close();
-    }
-  }, {
-    key: "esqueceuSenha",
-    value: function esqueceuSenha() {
-      this.modalLogin.close();
-      this.modalEsqueceuSenha.showModal();
-    }
-  }]);
-  return modalLogin;
-}();
-
-/***/ }),
-
 /***/ "./node_modules/css-loader/dist/cjs.js!./frontend/assets/css/style.css":
 /*!*****************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./frontend/assets/css/style.css ***!
@@ -23305,55 +23222,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! regenerator-runtime/runtime */ "./node_modules/regenerator-runtime/runtime.js");
 /* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _assets_css_style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./assets/css/style.css */ "./frontend/assets/css/style.css");
-/* harmony import */ var _modules_dialogCadastro__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/dialogCadastro */ "./frontend/modules/dialogCadastro.js");
-/* harmony import */ var _modules_dialogLogin__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/dialogLogin */ "./frontend/modules/dialogLogin.js");
-/* harmony import */ var _modules_cadastroValidator__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/cadastroValidator */ "./frontend/modules/cadastroValidator.js");
+/* harmony import */ var _modules_cadastroValidator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/cadastroValidator */ "./frontend/modules/cadastroValidator.js");
 
 
 
 
 
-
-
-// Abrir formulário de cadastro caso houver clique
-// Fechar formulário de cadastro
-var criarContaButton = document.querySelector('.criarContaButton');
-var fecharFormCadastro = document.querySelector('.fecharDialogCadastro');
-var instanciaModalCadastro = new _modules_dialogCadastro__WEBPACK_IMPORTED_MODULE_3__.modalCadastro();
-criarContaButton.addEventListener('click', function (e) {
-  instanciaModalCadastro.abrirFormCadastro();
-  e.preventDefault();
-});
-fecharFormCadastro.addEventListener('click', function (e) {
-  instanciaModalCadastro.fecharFormCadastro();
-});
-// ************************************************
-
-// Abrir formulário de login caso houver clique
-// Fechar formulário de login
-
-var entrarButton = document.querySelector('.entrarButton');
-var fecharFormLogin = document.querySelector('.fecharDialogLogin');
-var instanciaModalLogin = new _modules_dialogLogin__WEBPACK_IMPORTED_MODULE_4__.modalLogin();
-entrarButton.addEventListener('click', function (e) {
-  instanciaModalLogin.abrirFormLogin();
-  e.preventDefault();
-});
-fecharFormLogin.addEventListener('click', function (e) {
-  instanciaModalLogin.fecharFormLogin();
-});
-
-// **************************************************
-
+// <PÁGINA REGISTRO>
 // Validando formulário de cadastro
 
 var submitCadastro = document.querySelector('.submitCadastro');
 submitCadastro.addEventListener('click', function (e) {
-  var instanciaCadastroValidator = new _modules_cadastroValidator__WEBPACK_IMPORTED_MODULE_5__.cadastroValidator();
+  var instanciaCadastroValidator = new _modules_cadastroValidator__WEBPACK_IMPORTED_MODULE_3__.cadastroValidator();
   instanciaCadastroValidator.limpandoDados();
 });
+var divErro = document.querySelector('.divErro');
+function sumirDivErro() {
+  divErro.remove();
+}
+setTimeout(sumirDivErro, 3000);
 
 // **************************************************
+// </PAGINA REGISTRO>
 })();
 
 /******/ })()

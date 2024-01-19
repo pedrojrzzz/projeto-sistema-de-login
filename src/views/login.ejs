@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/assets/css/styleLogin.css">
+</head>
+<body>
+    <%- include('includes/navbar') %>
+
+    <main>
+        <div class="divLogin">
+          <div class="formLogin">
+            <form action="">
+            <h2 style="text-align: center; letter-spacing: 1px; color: white;">Login</h2>
+
+              <input type="text" placeholder="E-mail" autocomplete="email">
+              <br>
+              <input type="password" placeholder="Senha" autocomplete="current-password" style="margin-bottom: 5px;">
+              <br>
+              <a href="/recuperar-senha" style="margin-left: 10px; font-weight: 500; color: rgb(18, 18, 110);">Esqueceu a senha?</a>
+            <br>
+              <button type="button">Entrar</button>
+            </form>
+
+        </div>
+      </div>
+    </main>
+</body>
+</html>

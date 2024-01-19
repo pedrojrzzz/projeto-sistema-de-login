@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="/assets/css/styleRegister.css">
+</head>
+<body>
+    <%- include('includes/navbar') %>
+
+    <main>
+        <div class="divFormulario">
+          <div class="formCadastro">
+            <h2 style="text-align: center; color: white;">Crie sua conta</h2>
+            <p style="color: white; margin-top: 10px; margin-left: 15px;">Sua senha precisa conter pelo menos:</p>
+            <ul style="margin-left: 35px;">
+              <li>8 caracteres</li>
+              <li>Uma letra maiúscula</li>
+              <li>Uma letra minúscula</li>
+              <li>Um número</li>
+              <li>Um caracter especial @#$%</li>
+            </ul>
+            <br>
+            
+            <%- include ('includes/messages') %>
+            
+            <form action="/registerNewUS3r" method="POST" class="formularioCadastro">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            
+            <input type="text" name="nome" placeholder="Nome completo" class="cadastroNome" required/>
+             <br>
+
+            <input type="text" autocomplete="email" name="email" placeholder="E-mail" class="cadastroEmail" required/>
+             <br>
+
+            <input type="password" autocomplete= "current-password" name= "senha" placeholder="Senha" class="cadastroSenha" required/>
+            <br>
+
+            <input type="password" autocomplete="current-password" placeholder="Confirme sua senha" class="cadastroConfirmSenha" required/>
+            <br>
+            <div style="display: flex; width: 340px; justify-content: end; margin-top: 20px; margin-left: 17px;">
+            <span class="submitCadastro" style="text-align: center;">Criar conta</span>
+          </div>
+          </form>
+        </div>
+        </div>
+    </main>
+    <script src="./assets/js/bundle.js"></script>
+</body>
+</html>

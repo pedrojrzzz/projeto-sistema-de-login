@@ -72,10 +72,13 @@ const meusMiddlewares = require('./src/middlewares/middleware') // Importando me
 app.use(csrf({cookie: true}))
 app.use(meusMiddlewares.csrfMiddleware)
 app.use(meusMiddlewares.checkCsrfError)
+const usuarioMiddleware = require('./src/middlewares/usuarioMiddleware')
+app.use(usuarioMiddleware.userMiddleware)
+
+
 
 app.use(route) // para o express, usar suas rotas
 //**************************************************/
-
 
 app.on('pronto', () => {
 

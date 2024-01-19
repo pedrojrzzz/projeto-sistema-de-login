@@ -1,7 +1,20 @@
-<div class="messagesSuccess">
+<% if (errors.length !== 0) { %>
+    <div class="divErro">
+        <div>
+              <% for(let i = 0; i < errors.length; i++) { %>
+                <li style="margin-bottom: 5px;"><%- errors[i] %></li>
+              <% } %>
+        </div>
+    </div>
 
-</div>
-
-<div class="messagesError">
+    <% } %>
     
-</div>
+    <% if (success.length > 0) {%>
+    <div class="divSuccess">
+          <div>
+    
+              <li> <%- success %> </li>
+          </div>
+    </div>
+    <% } %>
+    

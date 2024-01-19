@@ -1,10 +1,3 @@
-module.exports.meuMiddleware = (req, res, next) => {
-    //Sua lógica
-    res.locals.varLocal = 'exemplo valor de teste'
-    next()
-}
-
-
 module.exports.checkCsrfError = (err, req, res, next) => {
     console.log(err)
     if (err && err.code === 'EBADCSRFTOKEN') {
@@ -19,3 +12,4 @@ module.exports.csrfMiddleware = (req, res, next) => {
 
     next()
 }
+
