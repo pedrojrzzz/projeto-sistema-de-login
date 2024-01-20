@@ -8,16 +8,37 @@ const nodemailer = require('nodemailer')
 
 // Schema BD Cadastro de usuários
 const cadastroSchema = new moongose.Schema({
-    id: {type: 'String', required: true},
-    name: {type: 'String', required: true},
-    email: {type: 'String', required: true},
-    password: {type: 'String', required: true}, 
-    confirmedAccount: {type: 'String', required: true},                   // e-mail confirm
-    token: {type: 'String', required: true},
-    typeAccount: {type: 'String', required: true}  //User or Adm
+    id: {
+        type: 'String',
+        required: true
+    },
+    name: {
+        type: 'String',
+        required: true
+    },
+    email: {
+        type: 'String',
+        required: true
+    },
+    password: {
+        type: 'String',
+        required: true
+    },
+    confirmedAccount: {
+        type: 'String',
+        required: true
+    }, // e-mail confirm
+    token: {
+        type: 'String',
+        required: true
+    },
+    typeAccount: {
+        type: 'String',
+        required: true
+    } //User or Adm
 })
 
-const usersModel = moongose.model('users', cadastroSchema)  // My collection
+const usersModel = moongose.model('users', cadastroSchema) // My collection
 
 // *****************************************
 
@@ -27,13 +48,12 @@ class validandoCadastroBackend {
         this.body = body
         this.error = []
         this.tokenUsuario = ''
-        this.tokenEnviadoHash = ''
     }
 
 
-   async cleanData() {
+    async cleanData() {
         for (let key in this.body) {
-            if (typeof this.body[key] !== 'string'){
+            if (typeof this.body[key] !== 'string') {
                 this.body[key] = ''
             }
 
@@ -54,7 +74,7 @@ class validandoCadastroBackend {
         }
         const regexNome = /\b[A-Za-zÀ-ú][A-Za-zÀ-ú]+,?\s[A-Za-zÀ-ú][A-Za-zÀ-ú]{2,19}\b/gi;
 
-        if (!regexNome.test(this.body.nome)){
+        if (!regexNome.test(this.body.nome)) {
             this.error.push('Nome inválido')
             return
         }
@@ -64,7 +84,9 @@ class validandoCadastroBackend {
 
 
     async validandoEmail() {
-        const existEmail = await usersModel.findOne({email: this.body.email})
+        const existEmail = await usersModel.findOne({
+            email: this.body.email
+        })
         if (existEmail) {
             this.error.push('E-mail já cadastrado em nosso sistema')
         }
@@ -83,13 +105,13 @@ class validandoCadastroBackend {
     }
 
 
-     async validandoSenha() {
+    async validandoSenha() {
         if (this.body.senha.length == 0) {
             this.error.push('Senha inválida')
             return
         }
 
-        if (!validator.isStrongPassword(this.body.senha)){
+        if (!validator.isStrongPassword(this.body.senha)) {
             this.error.push('Senha inválida')
             return
         }
@@ -101,7 +123,7 @@ class validandoCadastroBackend {
         const id = await this.genNextSequenceMongo()
         const tokenUser = await this.geradorDeToken()
         this.tokenUsuario = tokenUser
-        
+
 
 
         const salt = bcrypt.genSaltSync(10)
@@ -121,69 +143,71 @@ class validandoCadastroBackend {
     }
 
 
-    async genNextSequenceMongo() {
-        const lastId = await usersModel.find({
-            $and: [
-              { 'id': { $gte: 1 } } // IDs maiores ou iguais a 1
-
-            ]
-          });
-          let arrayID = []
-          for (let i = 0; i <  lastId.length; i++) {
-            let passandoPraNumber = Number(lastId[i].id)
-            arrayID.push(passandoPraNumber)
-          }
-          
-          const maxID = Math.max(...arrayID)
-          return maxID + 1
-         
+    async genNextSequenceMongo() { // AUTO INCREMENT MONGODB
+        const lastId = await usersModel.countDocuments()
+        return lastId
     }
 
 
     async geradorDeToken() {
-        let numerosAleatorios = 0
-        let intermediarioFormatado = []
+        let caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         let tokenUsuario = ''
-        for (let i = 0; i < 6; i++){
-            numerosAleatorios = Math.round(Math.random() * (9 - 0) + 0)
-            intermediarioFormatado.push(numerosAleatorios)
-            tokenUsuario += String(intermediarioFormatado[i])
+        for (let i = 0; i < 47; i++) {
+            tokenUsuario += caracteres.charAt(Math.floor(Math.random() * caracteres.length))
         }
-        
+
         return tokenUsuario
     }
 
 
     async enviarEmailConfirmacao() {
         const transporter = nodemailer.createTransport({
-            host: "smtp-relay.gmail.com",
+            service: 'gmail',
             port: 587,
             secure: false,
             auth: {
                 user: process.env.user,
                 pass: process.env.password,
-                  }
-          })
+            }
+        })
 
-        const tokenEnviadoHash = bcrypt.hashSync(this.tokenUsuario, 5)
-        this.tokenEnviadoHash = tokenEnviadoHash
+
+
 
         const mailOptions = {
             from: process.env.user,
             to: this.body.email,
             subject: 'Link de confirmação de cadastro projeto-sistema-de-login',
-            html: `<h1>Link de confirmação</h1></br><p>http://localhost:3000/${tokenEnviadoHash}</p>`
+            html: `<h2>Link de confirmação</h2> </br>
+            <a href="http://localhost:3000/confirm/${this.tokenUsuario}">Clique aqui para confirmar sua conta</a> </br>
+            <p>Isso é um e-mail automático, por favor não responda!</p>`
         }
- 
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) console.log("Erro ao enviar o email: " + error);
-        else {
-          console.log("E-mail enviado " + info.response);
-        }
-      });
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) console.log("Erro ao enviar o email: " + error);
+            else {
+                console.log("E-mail enviado " + info.response);
+            }
+        });
     }
-    
+
+
+    async confirmandoConta(tokenRecebido) {
+        try {
+            await usersModel.findOneAndUpdate(
+                {"token": tokenRecebido.token},
+                 {$set: {"confirmedAccount": 'true'}
+            }, )
+            return true
+        } catch (error) {
+            console.log(error)
+            return false
+        }
+
+    }
+
 }
+
 // *****************************************
 
 

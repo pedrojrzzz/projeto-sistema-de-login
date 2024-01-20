@@ -23237,10 +23237,12 @@ submitCadastro.addEventListener('click', function (e) {
   instanciaCadastroValidator.limpandoDados();
 });
 var divErro = document.querySelector('.divErro');
-function sumirDivErro() {
-  divErro.remove();
+var divSuccess = document.querySelector('.divSuccess');
+function sumirErroOuSuccess() {
+  if (divSuccess) divSuccess.remove();
+  if (divErro) divErro.remove();
 }
-setTimeout(sumirDivErro, 3000);
+setTimeout(sumirErroOuSuccess, 15000);
 
 // **************************************************
 // </PAGINA REGISTRO>

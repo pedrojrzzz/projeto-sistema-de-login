@@ -2,7 +2,6 @@ const express = require('express')
 const route = express.Router()
 
 
-
 const homeController = require('./src/controllers/homeController')
 const registroController = require('./src/controllers/cadastroController')
 const loginController = require('./src/controllers/loginController')
@@ -15,7 +14,9 @@ route.get('/', homeController.rendPaginaInicial)
 // Rotas de cadastro
 route.get('/register', registroController.renderizarCadastro)
 route.post('/registerNewUS3r', registroController.cadastroUsuario)
-//Rota caso sucesso ou erro no cadastro
+
+// Rota de confirmação de cadastro
+route.get('/confirm/:token', registroController.confirmarConta)
 
 
 // Rotas de login

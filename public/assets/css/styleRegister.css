@@ -243,8 +243,9 @@ nav ul li a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 45px;
+    height: auto;
     width: 320px;
+    padding: 10px;
     border-radius: 7px;
     border: none;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.497);
@@ -254,6 +255,6 @@ nav ul li a:hover {
 
 .divSuccess li {
     list-style-type: none;
-    font-weight: 500;
+    font-weight: 600;
     
 }

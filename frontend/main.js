@@ -17,12 +17,14 @@ submitCadastro.addEventListener('click', e => {
 
 
 const divErro = document.querySelector('.divErro')
+const divSuccess = document.querySelector('.divSuccess')
 
-function sumirDivErro() {
-    divErro.remove()
+function sumirErroOuSuccess() {
+    if (divSuccess) divSuccess.remove()
+    if (divErro) divErro.remove()
 }
 
-setTimeout(sumirDivErro, 3000)
+setTimeout(sumirErroOuSuccess, 15000)
 
 // **************************************************
 // </PAGINA REGISTRO>
