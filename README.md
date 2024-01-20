@@ -1,5 +1,19 @@
 # projeto-sistema-de-login
-Um sistema de login completo, com node e express
+Um sistema de login completo, com JavaScript, node e express
 
 
-Caso for reutilizar esse código, não se esqueça de alterar o método "enviarEmailConfirmacao" dentro do arquivo "cadastroModel"
+
+Frameworks utilizados:
+- express
+  
+Libs utilizadas:
+- express-session
+- connect-flash
+- helmet
+- csrf
+- validator
+- bcrypt
+- nodemailer
+
+
+By pedrozzz
