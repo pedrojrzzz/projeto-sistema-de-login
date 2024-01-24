@@ -214,4 +214,26 @@ nav ul li a:hover {
 .divErro li {
     list-style-type: none;
 }
+
+
+.divSuccess {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: auto;
+    padding: 10px;
+    border-radius: 7px;
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.497);
+    background-color: rgb(116, 228, 85);
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+.divSuccess li {
+    list-style-type: none;
+    font-weight: 600;
+    
+}
 /* ******************************************** */

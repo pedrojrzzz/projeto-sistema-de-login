@@ -17,8 +17,12 @@
                 </div>
                 <a href="/"></a>
                 
-                <form action="">
+                <form action="/recuperar-senhaUser" method="POST">
                     <h2 style="text-align: center; margin-top: 5px; letter-spacing: 1px; color: white; font-weight: 300px;">Recuperar senha</h2>
+
+                    <%- include('includes/messages') %>
+                    
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                     <input type="text" placeholder="Digite seu e-mail" required> <br>
                     <button>Recuperar</button>
                 </form>

@@ -1,7 +1,9 @@
 import 'core-js/stable'
 import 'regenerator-runtime/runtime';
 import './assets/css/style.css'
-import { cadastroValidator } from './modules/cadastroValidator';
+import {
+    cadastroValidator
+} from './modules/cadastroValidator';
 
 
 // <PÁGINA REGISTRO>
@@ -25,6 +27,12 @@ function sumirErroOuSuccess() {
 }
 
 setTimeout(sumirErroOuSuccess, 15000)
+
+
+function onSubmit(token) {
+    document.querySelector('.formularioCadastro').submit();
+  } // Use `requestSubmit()` for extra features like browser input validation.
+
 
 // **************************************************
 // </PAGINA REGISTRO>

@@ -193,13 +193,30 @@ class validandoCadastroBackend {
 
 
     async confirmandoConta(tokenRecebido) {
+        const tokenRecebidoTratado = tokenRecebido
+        if (tokenRecebidoTratado.length !== 47) {
+            return
+        }
+        if (!validator.isAlphanumeric(tokenRecebidoTratado)) {
+            console.log('cai no alphaNumeric')
+            return
+        }
+        if (!validator.blacklist(tokenRecebidoTratado)) {
+            console.log('cai no blacklist')
+            return
+        }
+        if (!validator.escape(tokenRecebidoTratado)) {
+            console.log('cai no escape')
+            return
+        }
         try {
             await usersModel.findOneAndUpdate(
-                {"token": tokenRecebido.token},
+                {"token": tokenRecebido},
                  {$set: {"confirmedAccount": 'true'}
             }, )
             return true
         } catch (error) {
+            console.log('oi')
             console.log(error)
             return false
         }

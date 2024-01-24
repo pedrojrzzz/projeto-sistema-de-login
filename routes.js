@@ -23,7 +23,8 @@ route.get('/confirm/:token', registroController.confirmarConta)
 route.get('/login', loginController.renderizarLogin)
 
 // Rotas de recuperar senha
-route.get('/recuperar-senha', recuperarSenhaController.recuperarSenhaController)
+route.get('/recuperar-senha', recuperarSenhaController.recuperarSenhaControllerPagina)
+route.post('/recuperar-senhaUser', recuperarSenhaController.recuperarSenhaUsuario)
 
 
 // Rotas de administrador
@@ -31,6 +32,11 @@ route.get('/administrativePanel', (req, res)=> {
     res.render('administrativePanel')
 })
 
+
+// Rotas de error 404
+route.get('/404', (req, res) => {
+    res.render('404')
+})
 
 
 

@@ -23243,6 +23243,9 @@ function sumirErroOuSuccess() {
   if (divErro) divErro.remove();
 }
 setTimeout(sumirErroOuSuccess, 15000);
+function onSubmit(token) {
+  document.querySelector('.formularioCadastro').submit();
+} // Use `requestSubmit()` for extra features like browser input validation.
 
 // **************************************************
 // </PAGINA REGISTRO>

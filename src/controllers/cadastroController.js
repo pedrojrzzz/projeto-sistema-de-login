@@ -1,4 +1,5 @@
 // LIBS
+const validator = require('validator')
 //*****************************************/
 
 // Módulos importados
@@ -17,7 +18,7 @@ const renderizarCadastro = (req, res) => {
 
 // Controller que cuida do cadastro do usuário
 const cadastroUsuario = async function (req, res, next) {
-                           
+
     const insValidandoCadastroBackend = new validandoCadastroBackend(req.body)
     await insValidandoCadastroBackend.cleanData()
 
@@ -76,17 +77,22 @@ const cadastroUsuario = async function (req, res, next) {
 
 // Controller que cuida da confirmação de conta do usuário
 const confirmarConta = async function (req, res) {
-    const tokenRecebido = req.params
-    const insValidandoCadastroBackend = new validandoCadastroBackend()
-    const trueOrFalse = await insValidandoCadastroBackend.confirmandoConta(tokenRecebido)
-    if (trueOrFalse == true) {
-        console.log('Conta confirmada!')
-        res.redirect('/')
+    const tokenRecebido = req.params.token
 
-    } else {
-        console.log('Erro ao confirmar a conta, erro acima ^')
-        return
-    }
+        const insValidandoCadastroBackend = new validandoCadastroBackend()
+        const trueOrFalse = await insValidandoCadastroBackend.confirmandoConta(tokenRecebido)
+        console.log(trueOrFalse)
+
+        if (trueOrFalse == true) {
+            console.log('Conta confirmada!')
+            req.flash('success', 'Conta confirmada com sucesso')
+            res.redirect('/login')
+    
+        } else {
+            console.log('Erro ao confirmar a conta, erro acima ^')
+            res.redirect('404')
+            return
+        }
 
 }
 // *****************************************************

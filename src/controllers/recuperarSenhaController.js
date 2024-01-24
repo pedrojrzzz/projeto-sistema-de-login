@@ -1,5 +1,18 @@
-const recuperarSenhaController = (req, res) => {
+// Controller que renderiza página de recuperar senha
+const recuperarSenhaControllerPagina = (req, res) => {
     res.render('recuperarSenha')
 }
 
-module.exports.recuperarSenhaController = recuperarSenhaController
+
+// Controller que recupera senha
+const recuperarSenhaUsuario = (req, res) => {
+    
+    class recSenha {
+        constructor() {
+
+        }
+    }
+}
+
+module.exports.recuperarSenhaControllerPagina = recuperarSenhaControllerPagina
+module.exports.recuperarSenhaUsuario = recuperarSenhaUsuario
