@@ -4,30 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/assets/css/styleRecSenha.css">
+    <link rel="stylesheet" href="/assets/css/styleAlterarSenha.css"/>
 </head>
 <body>
+
     <%- include('includes/navbar') %>
 
     <main>
         <div class="divRecSenha">         
-            <div class="formRecSenha">
-                <div class="voltar">
-                    <a href="/" class="link">voltr</a>
-                </div>
-                <a href="/"></a>
+            <div class="formAlterarSenha">
                 
                 <form action="/recuperar-senhaUser" method="POST">
-                    <h2 style="text-align: center; margin-top: 5px; letter-spacing: 1px; color: white; font-weight: 300px;">Recuperar senha</h2>
+                    <h2 style="text-align: center; margin-top: 5px; letter-spacing: 1px; color: white; font-weight: 300px;">Alterar Senha</h2>
 
                     <%- include('includes/messages') %>
                     
                     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                    <input type="text" name="email" placeholder="Digite seu e-mail" required> <br>
-                    <button>Recuperar</button>
+                    <input type="password" name="email" placeholder="Digite sua nova senha" required> <br>
+                    <input type="password" placeholder="Confirme sua senha" required>
+                    <button>Alterar senha</button>
                 </form>
             </div>
         </div>
     </main>
+    
+    <script src="./assets/js/bundle.js"></script>
 </body>
 </html>

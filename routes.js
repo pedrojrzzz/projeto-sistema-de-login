@@ -25,7 +25,7 @@ route.get('/login', loginController.renderizarLogin)
 // Rotas de recuperar senha
 route.get('/recuperar-senha', recuperarSenhaController.recuperarSenhaControllerPagina)
 route.post('/recuperar-senhaUser', recuperarSenhaController.recuperarSenhaUsuario)
-
+route.get('/changePassword/:tokenChangePassword', recuperarSenhaController.alterarSenhaUser)
 
 // Rotas de administrador
 route.get('/administrativePanel', (req, res)=> {
@@ -37,6 +37,7 @@ route.get('/administrativePanel', (req, res)=> {
 route.get('/404', (req, res) => {
     res.render('404')
 })
+
 
 
 
