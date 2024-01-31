@@ -25,22 +25,26 @@ const recuperarSenhaUsuario = async function (req, res) {
 
   } else {
     req.flash('success', 'Foi enviado um e-mail para seu endereço fornecido')
-    const payload = insRecSenha.body.email
-    const expirationTime = Math.floor(Date.now() / 1000) + 60 * 60
-    const token = jwt.sign({exp: expirationTime, data: payload}, process.env.jwtSecret)
-    console.log('token' + token)
+    /* const payload = insRecSenha.body.email */
+    const payload = {email: insRecSenha.body.email, tokenLink: insRecSenha.tokenUsuario} // Dado que vai ser salvo no jwt
+    const expirationTime = Math.floor(Date.now() / 1000) + 60 * 60                       // Tempo de expirar jwt
+    const token = jwt.sign({exp: expirationTime, data: payload}, process.env.jwtSecret)  // Criando o token JWT
     const validandoJwt = jwt.decode(token, process.env.jwtSecret)
-    console.log(validandoJwt)
+
+    class passandoTokenJwt {
+      constructor(token) {
+        this.jwtToken = token
+      }
+    }
+    const insPassandoTokenJwt = new passandoTokenJwt(token)
+
+    module.exports.insPassandoTokenJwt = insPassandoTokenJwt
     res.redirect('/recuperar-senha')
   }
 
 
 }
 
-const alterarSenhaUser = async function(req, res) {
-  res.render('alterarSenha')
-}
 
 module.exports.recuperarSenhaControllerPagina = recuperarSenhaControllerPagina
 module.exports.recuperarSenhaUsuario = recuperarSenhaUsuario
-module.exports.alterarSenhaUser = alterarSenhaUser

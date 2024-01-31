@@ -14,15 +14,15 @@
         <div class="divRecSenha">         
             <div class="formAlterarSenha">
                 
-                <form action="/recuperar-senhaUser" method="POST">
+                <form action="/changePasswordConfirm" method="POST" class="alterarSenhaForm">
                     <h2 style="text-align: center; margin-top: 5px; letter-spacing: 1px; color: white; font-weight: 300px;">Alterar Senha</h2>
 
                     <%- include('includes/messages') %>
                     
                     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                    <input type="password" name="email" placeholder="Digite sua nova senha" required> <br>
-                    <input type="password" placeholder="Confirme sua senha" required>
-                    <button>Alterar senha</button>
+                    <input type="password" class="senhaAlterarSenha" name="senha" placeholder="Digite sua nova senha" required> <br>
+                    <input type="password" class="confirmSenhaAlterarSenha" placeholder="Confirme sua senha" required>
+                    <button class="buttonEnviarAlterarSenha">Alterar senha</button>
                 </form>
             </div>
         </div>

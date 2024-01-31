@@ -139,7 +139,7 @@ class validandoCadastroBackend {
             typeAccount: 'user'
         }
 
-        this.geradorDeToken()
+        /* this.geradorDeToken() */
     }
 
 

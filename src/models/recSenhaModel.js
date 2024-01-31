@@ -10,9 +10,10 @@ const userModel = require('./cadastroModel').usersModel
 
 
 class recSenha {
-    constructor (body) {
+    constructor(body) {
         this.body = body
-        this.error = []
+        this.error = [],
+        this.tokenUsuario = ''
     }
 
     async cleanData() {
@@ -30,7 +31,7 @@ class recSenha {
     }
 
     async validandoEmail() {
-        if (!validator.isEmail(this.body.email)){
+        if (!validator.isEmail(this.body.email)) {
             this.error.push('E-mail inválido')
             return
         }
@@ -39,25 +40,30 @@ class recSenha {
     }
 
     async verificarEmailNoBd() {
-        const existEmail = await userModel.findOne({email: this.body.email})
+        const existEmail = await userModel.findOne({
+            email: this.body.email
+        })
 
         if (!existEmail) {
             this.error.push('E-mail não existe em nosso sistema')
             return
         }
 
-        await this.geradorDeToken()
+        this.tokenUsuario = await this.geradorDeToken()
+        console.log(this.tokenUsuario)
+        await this.enviarEmailDeRec(this.tokenUsuario)
     }
 
-    async geradorDeToken () {
+    async geradorDeToken() {
         let caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         let tokenUsuario = ''
-        for (let i = 0; i < 53; i++) {
+        for (let i = 0; i < 42; i++) {
             tokenUsuario += caracteres.charAt(Math.floor(Math.random() * caracteres.length))
         }
-        console.log(tokenUsuario)
 
-        /* await this.enviarEmailDeRec(tokenUsuario) */
+        return tokenUsuario
+
+        
     }
 
     async enviarEmailDeRec(tokenUsuario) {
@@ -92,7 +98,12 @@ class recSenha {
         });
     }
 
-
+    async alterarSenha(email, senha) {
+        await usersModel.findOneAndUpdate(
+            {"email": tokenRecebido},
+             {$set: {"password": 'true'}
+        }, )
+    }
 }
 
 

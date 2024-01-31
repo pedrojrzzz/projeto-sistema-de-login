@@ -6,6 +6,7 @@ const homeController = require('./src/controllers/homeController')
 const registroController = require('./src/controllers/cadastroController')
 const loginController = require('./src/controllers/loginController')
 const recuperarSenhaController = require('./src/controllers/recuperarSenhaController')
+const recuperarSenhaController2 = require('./src/controllers/recuperarSenhaController2')
 
 //Rotas index
 route.get('/', homeController.rendPaginaInicial)
@@ -25,7 +26,8 @@ route.get('/login', loginController.renderizarLogin)
 // Rotas de recuperar senha
 route.get('/recuperar-senha', recuperarSenhaController.recuperarSenhaControllerPagina)
 route.post('/recuperar-senhaUser', recuperarSenhaController.recuperarSenhaUsuario)
-route.get('/changePassword/:tokenChangePassword', recuperarSenhaController.alterarSenhaUser)
+route.get('/changePassword/:tokenChangePassword', recuperarSenhaController2.alterarSenhaUser)
+route.post('/changePasswordConfirm', recuperarSenhaController2.changePasswordConfirm)
 
 // Rotas de administrador
 route.get('/administrativePanel', (req, res)=> {

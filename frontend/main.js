@@ -1,9 +1,9 @@
 import 'core-js/stable'
 import 'regenerator-runtime/runtime';
 import './assets/css/style.css'
-import {
-    cadastroValidator
-} from './modules/cadastroValidator';
+
+import { cadastroValidator } from './modules/cadastroValidator';
+import { alterarSenhaClasse } from './modules/alterarSenha';
 
 
 // <PÁGINA REGISTRO>
@@ -36,3 +36,16 @@ function onSubmit(token) {
 
 // **************************************************
 // </PAGINA REGISTRO>
+
+
+
+// <PÁGINA DE ALTERAR SENHA>
+const buttonEnviarAlterarSenha = document.querySelector('.buttonEnviarAlterarSenha')
+buttonEnviarAlterarSenha.addEventListener('click', async function(event) {
+    event.preventDefault()
+
+    const insAlterarSenhaClasse = new alterarSenhaClasse()
+    await insAlterarSenhaClasse.limpandoDados()
+})
+// ***************************************************
+// </PÁGINA DE ALTERAR SENHA>
