@@ -13,19 +13,19 @@ const recuperarSenhaControllerPagina = (req, res) => {
 // **********************************
 
 
-// Controller que recupera senha
+// Controller que cuida do 1 formulário e gera JWT
 const recuperarSenhaUsuario = async function (req, res) {
   const insRecSenha = new recSenha(req.body)
   await insRecSenha.cleanData()
 
   if (insRecSenha.error.length !== 0) {
-    req.flash('error', insRecSenha.error[0])
+    await req.flash('error', insRecSenha.error[0])
     console.log('erro')
     res.redirect('/recuperar-senha')
 
   } else {
-    req.flash('success', 'Foi enviado um e-mail para seu endereço fornecido')
-    /* const payload = insRecSenha.body.email */
+    await req.flash('success', 'Foi enviado um e-mail para seu endereço fornecido')
+
     const payload = {email: insRecSenha.body.email, tokenLink: insRecSenha.tokenUsuario} // Dado que vai ser salvo no jwt
     const expirationTime = Math.floor(Date.now() / 1000) + 60 * 60                       // Tempo de expirar jwt
     const token = jwt.sign({exp: expirationTime, data: payload}, process.env.jwtSecret)  // Criando o token JWT

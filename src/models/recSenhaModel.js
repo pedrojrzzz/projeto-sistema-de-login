@@ -2,6 +2,7 @@
 const validator = require('validator')
 const jwt = require('jsonwebtoken')
 const nodemailer = require('nodemailer')
+const bcrypt = require('bcrypt')
 // ***************************
 
 // BANCO DE DADOS
@@ -13,7 +14,7 @@ class recSenha {
     constructor(body) {
         this.body = body
         this.error = [],
-        this.tokenUsuario = ''
+            this.tokenUsuario = ''
     }
 
     async cleanData() {
@@ -63,7 +64,7 @@ class recSenha {
 
         return tokenUsuario
 
-        
+
     }
 
     async enviarEmailDeRec(tokenUsuario) {
@@ -98,37 +99,47 @@ class recSenha {
         });
     }
 
-    async alterarSenha(email, senha) {
-        await usersModel.findOneAndUpdate(
-            {"email": tokenRecebido},
-             {$set: {"password": 'true'}
-        }, )
+    async validarSenha(dadosForm) {
+        const senha = dadosForm.senha
+        const confirmSenha = dadosForm.confirmSenha
+
+        if (senha.length == 0) {
+            this.error.push('Senha inválida')
+            return false
+        }
+
+        if (confirmSenha.length == 0) {
+            this.error.push('Suas senhas não coincidem')
+            return false
+        }
+
+        if (!validator.isStrongPassword(senha)) {
+            this.error.push('Sua senha não segue os padrões estabelecidos')
+            return false
+        }
+        return true
     }
+
+    // Método que alterar a senha no banco de dados
+    async alterarSenha(email, senha) {
+        const salt = bcrypt.genSaltSync(10)
+        const hashSenha = bcrypt.hashSync(senha, salt)
+        try {
+            await userModel.findOneAndUpdate({
+                "email": email
+            }, {
+                $set: {
+                    "password": hashSenha
+                }
+            }, )
+        } catch (error) {
+            console.log(error)
+            res.redirect('/404')
+            return
+        }
+    }
+    // ********************************************
 }
 
 
 module.exports.recSenha = recSenha
-
-
-/// QUANDO USUARIO INSERIR EMAIL, SALVAR UM COOKIE COM O E-MAIL DO USUARIO USANDO JWT 
-// PESQUISE NO GPT OU NO GOOGLE
-/* 
-Usuário vai inserir e-mail
-
-vou limpar os dados recebidos
-
-vou validar o e-mail recebido
-
-verificar se existe e-mail no banco
-
-gerar um token
-
-enviar e-mail com o link 
-
-renderizar uma página para o usuário por o código
-
-criar um controllador dentro do mesmo arquivo que está o primeiro controllador do recuperador de senha
-
-e verificar se os tokens combinam
-
-se sim / renderizar uma página pra ele alterar a senha */

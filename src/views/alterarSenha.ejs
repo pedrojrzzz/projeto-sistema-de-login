@@ -1,33 +1,51 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/assets/css/styleAlterarSenha.css"/>
+    <title>Alterar Senha</title>
+    <link rel="stylesheet" href="/assets/css/styleAlterarSenha.css" />
 </head>
+
 <body>
 
     <%- include('includes/navbar') %>
 
     <main>
-        <div class="divRecSenha">         
+        <div class="divRecSenha">
             <div class="formAlterarSenha">
-                
-                <form action="/changePasswordConfirm" method="POST" class="alterarSenhaForm">
-                    <h2 style="text-align: center; margin-top: 5px; letter-spacing: 1px; color: white; font-weight: 300px;">Alterar Senha</h2>
 
+                <form action="/changePasswordConfirm" method="POST" class="alterarSenhaForm">
+                    <h2
+                        style="text-align: center; margin-top: 5px; letter-spacing: 1px; color: white; font-weight: 300px;">
+                        Alterar Senha</h2>
+
+                   
+                    <p style="color: white; margin-top: 10px; margin-left: 15px;">Sua senha precisa conter pelo menos:
+                    </p>
+                    <ul style="margin-left: 35px;">
+                        <li style="color: white;">8 caracteres</li>
+                        <li style="color: white;">Uma letra maiúscula</li>
+                        <li style="color: white;">Uma letra minúscula</li>
+                        <li style="color: white;">Um número</li>
+                        <li style="color: white;">Um caracter especial @#$%</li>
+                    </ul>
+                    <br>
                     <%- include('includes/messages') %>
-                    
+                    <br>
+
                     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                    <input type="password" class="senhaAlterarSenha" name="senha" placeholder="Digite sua nova senha" required> <br>
-                    <input type="password" class="confirmSenhaAlterarSenha" placeholder="Confirme sua senha" required>
+                    <input type="password" class="senhaAlterarSenha" name="senha" placeholder="Digite sua nova senha"
+                        required> <br>
+                    <input type="password" class="confirmSenhaAlterarSenha" name="confirmSenha" placeholder="Confirme sua senha" required>
                     <button class="buttonEnviarAlterarSenha">Alterar senha</button>
                 </form>
             </div>
         </div>
     </main>
-    
+
     <script src="./assets/js/bundle.js"></script>
 </body>
+
 </html>
