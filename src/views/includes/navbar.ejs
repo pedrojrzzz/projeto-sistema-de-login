@@ -1,3 +1,4 @@
+<% if (user == null || user == 'undefined') { %>
 <nav>
     <div class="logo"></div>
     <ul>
@@ -24,3 +25,33 @@
       </li>
     </ul>
   </nav>
+  <% } else { %>
+    
+    <nav>
+      <div class="logo"></div>
+      <ul>
+        <li>
+          <a href="/">Home</a>
+        </li>
+  
+        <li>
+          <a href="">Produtos</a>
+        </li>
+  
+        <li>
+          <a href="">Sobre-nós</a>
+        </li>
+      </ul>
+  
+      <ul class="cantoUser">
+        <li class="dropdown">
+          <div class="logoUser"></div>
+          <div class="dropdown-menu">
+            <a href="/login" class="entrarButton">LOGADO</a>
+            <a href="/logout" class="criarContaButton">logout</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+
+  <% } %>

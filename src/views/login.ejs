@@ -12,18 +12,20 @@
     <main>
         <div class="divLogin">
           <div class="formLogin">
-            <form action="">
+            <form action="/loginValidation" method="POST">
             <h2 style="text-align: center; letter-spacing: 1px; color: white;">Login</h2>
 
             <%- include('includes/messages')%>
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
 
-              <input type="text" placeholder="E-mail" autocomplete="email">
+              <input type="text" placeholder="E-mail" name="email" autocomplete="email" required>
               <br>
-              <input type="password" placeholder="Senha" autocomplete="current-password" style="margin-bottom: 5px;">
+
+              <input type="password" name="password" placeholder="Senha" autocomplete="current-password" required style="margin-bottom: 5px;">
               <br>
               <a href="/recuperar-senha" style="margin-left: 10px; font-weight: 500; color: rgb(18, 18, 110);">Esqueceu a senha?</a>
             <br>
-              <button type="button">Entrar</button>
+              <button type="submit">Entrar</button>
             </form>
 
         </div>

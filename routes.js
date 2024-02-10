@@ -22,6 +22,10 @@ route.get('/confirm/:token', registroController.confirmarConta)
 
 // Rotas de login
 route.get('/login', loginController.renderizarLogin)
+route.post('/loginValidation', loginController.formularioLogin)
+
+// Rotas de logout
+route.get('/logout', loginController.logout)
 
 // Rotas de recuperar senha
 route.get('/recuperar-senha', recuperarSenhaController.recuperarSenhaControllerPagina)
