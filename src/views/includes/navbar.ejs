@@ -43,12 +43,14 @@
         </li>
       </ul>
   
-      <ul class="cantoUser">
-        <li class="dropdown">
+      <ul class="cantoUserLogado">
+        <li class="dropdownLogado">
           <div class="logoUser"></div>
-          <div class="dropdown-menu">
-            <a href="/login" class="entrarButton">LOGADO</a>
-            <a href="/logout" class="criarContaButton">logout</a>
+          <div class="dropdown-menu-logado">
+            <a href="/login" class="entrarButton"><%= userInfo.data.name %></a>
+            <a href="/alterarDados" class="entrarButton">Alterar dados</a>
+            <a href="/logout" class="criarContaButton">Logout</a>
+            <i class="fa-solid fa-user"></i>
           </div>
         </li>
       </ul>

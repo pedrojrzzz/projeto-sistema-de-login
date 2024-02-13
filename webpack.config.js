@@ -2,10 +2,13 @@ const path = require('path')
 
 module.exports = {
     mode: 'development',
-    entry: './frontend/main.js',
+    entry: {
+        index: './frontend/main.js',
+        alterarDados: './frontend/mainAlterarDados.js'
+    },
     output: {
-        path: path.resolve(__dirname, 'public', 'assets', 'js'),
-        filename: 'bundle.js',
+        path: path.resolve(__dirname, 'public', 'assets', 'js', 'bundles'),
+        filename: '[name].bundle.js',
         libraryTarget: 'umd',
     },
     module: {

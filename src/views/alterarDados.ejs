@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alterar dados</title>
+    <link rel="stylesheet" href="/assets/css/styleAlterarDados.css" />
+</head>
+
+<body>
+
+    <%- include('includes/navbar') %>
+
+    <main>
+
+        <div class="divContainer">
+            <div class="divConteudo">
+                <h2>Alterar dados</h2>
+
+                <p>Nome: <%- userInfo.data.name%></p> <p class="nameEdit">&#128393</p> <br>
+                <p>E-mail: <%- userInfo.data.email %></p> <p class="emailEdit">&#128393</p> <br>
+                <p>Senha: *****</p> <p class="passwordEdit">&#128393</p> <br>
+
+            </div>
+
+            <div class="modais">
+                
+                <dialog class="modalNameEdit">
+                    <div class="containerModal">
+                        <form action="" class="formNameEdit">
+                            <div class="headerForm">
+                                <h2>Alterar Nome</h2>
+                                <span></span>
+                            </div>
+                        </form>
+                    </div>
+                </dialog>
+
+            </div>
+            
+        </div>
+
+        
+
+
+    </main>
+
+    
+    <script src="./assets/js/bundles/alterarDados.bundle.js"></script>
+</body>
+
+</html>

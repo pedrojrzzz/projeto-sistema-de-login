@@ -46,17 +46,20 @@ const formularioLogin = async function (req, res) {
 }
 
 const logout = async function (req, res) {
-    await req.session.destroy(err => {
-        if (err) {
-            req.flash('error', 'Erro ao deslogar usuário, tente novamente.')
-            console.log('Erro ao deslogar usuário')
-            return res.redirect('/login')
-        }
+             req.session.destroy(err => {
+                if (err) {
+                    console.log('Erro ao deslogar usuário')
+                    res.redirect('404')
+                    return
+                }
+                res.locals.user = null
+                res.locals.userInfo = null
+                res.redirect('/login')
+                return
+            })
+        } 
 
-        req.flash('success', 'Deslogado com sucesso!')
-        res.redirect('/login')
-    })
-}
+
 
 
 module.exports.renderizarLogin = renderizarLogin
