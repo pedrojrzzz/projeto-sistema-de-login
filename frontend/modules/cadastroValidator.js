@@ -134,7 +134,7 @@ export class cadastroValidator {
   mostrandoErros(campo) {
     const proximoElemento = campo.nextElementSibling;
     if (proximoElemento && proximoElemento.tagName.toLowerCase() === "p") {
-      return;
+      proximoElemento.remove();
     }
 
     const paragrafo = document.createElement("p");

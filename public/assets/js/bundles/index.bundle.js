@@ -175,7 +175,7 @@ var cadastroValidator = /*#__PURE__*/function () {
     value: function mostrandoErros(campo) {
       var proximoElemento = campo.nextElementSibling;
       if (proximoElemento && proximoElemento.tagName.toLowerCase() === "p") {
-        return;
+        proximoElemento.remove();
       }
       var paragrafo = document.createElement("p");
       campo.insertAdjacentElement("afterend", paragrafo);

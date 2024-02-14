@@ -32,12 +32,17 @@
                 <dialog class="modalNameEdit">
                     <div class="containerModal">
                         <form action="" method="POST" class="formNameEdit">
-                            <div class="headerForm">
+                            <div class="headerFormNameEdit">
                                 <h2>Alterar Nome</h2>
                                 <span class="iconXNameEdit"></span> <br>
+                            </div>
+
+                            <div class="bodyFormNameEdit">
                                 <%- include('includes/messages')%> <br>
-                                <input type="text" name="name" placeholder="Digite seu novo nome" required> <br>
-                                <button>Alterar nome</button>
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                <input type="text" name="name" class="inputNameEdit" placeholder="Digite seu novo nome"
+                                    required> <br>
+                                <button class="submitFormNameEdit">Alterar nome</button>
                             </div>
                         </form>
                     </div>
@@ -48,12 +53,14 @@
                         <form action="" method="POST" class="formEmailEdit">
                             <div class="headerFormEmailEdit">
                                 <h2>Alterar E-mail</h2>
-                                <span class="iconXEmailEdit"></span>
+                                <span class="iconXEmailEdit"></span> <br>
                             </div>
-                            <%- include('includes/messages') %>
+                            <%- include('includes/messages') %> <br>
                             <div class="bodyFormEmailEdit">
-                                <input type="text" name="email" placeholder="Digite seu novo e-mail" required> <br>
-                                <button>Alterar e-mail</button>
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                <input type="text" name="email" class="inputEmailEdit" placeholder="Digite seu novo e-mail" required>
+                                <br>
+                                <button class="submitFormEmailEdit">Alterar e-mail</button>
                             </div>
                         </form>
                     </div>
@@ -66,7 +73,8 @@
                                 <h2>Alterar Senha</h2>
                                 <span class="iconXPasswordEdit"></span>
                             </div>
-                            <p style="color: white; margin-top: 10px; margin-left: 15px;">Sua nova senha precisa conter pelo
+                            <p style="color: white; margin-top: 10px; margin-left: 15px;">Sua nova senha precisa conter
+                                pelo
                                 menos:</p>
                             <ul style="margin-left: 35px;">
                                 <li>8 caracteres</li>
@@ -78,13 +86,14 @@
                             <br>
                             <%- include ('includes/messages')%>
                             <div class="bodyFormPasswordEdit">
-                                <input type="password" name="currentPassword" placeholder="Digite sua senha atual"
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                <input type="password" name="inputCurrentPasswordEdit" class="inputCurrentPassword" placeholder="Digite sua senha atual"
                                     required> <br>
-                                <input type="password" name="newPassword" placeholder="Digite sua nova senha" required>
+                                <input type="password" name="newPassword" class="inputNewPasswordEdit" placeholder="Digite sua nova senha" required>
                                 <br>
-                                <input type="password" name="confirmNewPassword" placeholder="Confirme sua nova senha"
+                                <input type="password" name="confirmNewPassword" class="inputConfirmNewPassword" placeholder="Confirme sua nova senha"
                                     requied> <br>
-                                <button>Alterar senha</button>
+                                <button class="submitFormPasswordEdit">Alterar senha</button>
                             </div>
                         </form>
                     </div>

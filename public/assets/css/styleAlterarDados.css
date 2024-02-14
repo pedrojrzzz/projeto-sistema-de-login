@@ -206,9 +206,10 @@ main {
 .modalNameEdit {
     margin-top: 230px;
     margin-left: 37%;
-    border: 0;
+    border: none;
     padding: 5px;
     background-color: transparent;
+
 }
 
 .modalNameEdit::backdrop{
@@ -223,18 +224,20 @@ main {
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: 1rem;
-}
-.headerForm {
-    display: grid;
-    grid-template-columns: 95% 5%;
+    border: none;
 }
 
-.headerForm h2 {
+.headerFormNameEdit {
+    display: grid;
+    grid-template-columns: 100%;
+}
+
+.headerFormNameEdit h2 {
     text-align: center;
     color: white;
 }
 
-.headerForm span {
+.headerFormNameEdit span {
     position: absolute;
     right: 10px;
     background-image: url('../img/iconX.png');
@@ -243,34 +246,42 @@ main {
     width: 30px;
 }
 
-
-.headerForm span:hover {
+.headerFormNameEdit span:hover {
     opacity: 0.3;
     transition: 0.1s;
 }
 
-.headerForm input {
+.bodyFormNameEdit {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: 100%;
+    padding: 5px;
+}
+
+
+.bodyFormNameEdit input {
     height: 35px;
     width: 340px;
     border-radius: 20px;
     border: none;
-    margin-top: 15px;
+    margin-top: 3px;
     font-size: 14px;
     text-indent: 2%;
 }
 
-.headerForm input:focus {
+.bodyFormNameEdit input:focus {
     background-color: rgb(254, 254, 254);
     outline: none;
     border: 0 none;
     box-shadow: none;
 }
 
-.headerForm button {
+.bodyFormNameEdit button {
     color: black;
     padding: 10px;
     width: 340px;
-    margin-top: 25px;
+    margin-top: 7px;
     font-size: 16px;
     letter-spacing: 1px;
     border: none;
@@ -291,7 +302,7 @@ main {
     }
 }
 
-.headerForm button:hover {
+.bodyFormNameEdit button:hover {
     &::before {
         background-color: greenyellow;
         transition: 0.2s ease;
@@ -328,7 +339,7 @@ main {
 
 .headerFormEmailEdit {
     display: grid;
-    grid-template-columns: 95% 5%;
+    grid-template-columns: 100%;
 }
 
 .headerFormEmailEdit h2 {
@@ -355,9 +366,8 @@ main {
     display: grid;
     align-items: center;
     justify-content: center;
-    grid-template-columns: 100% 1fr;
-    padding: 10px;
-    gap: 20px;
+    grid-template-columns: 100%;
+    gap: 2px;
 }
 
 .bodyFormEmailEdit input {
@@ -365,7 +375,7 @@ main {
     width: 340px;
     border-radius: 20px;
     border: none;
-    margin-top: 15px;
+    margin-top: 3px;
     font-size: 14px;
     text-indent: 2%;
 }

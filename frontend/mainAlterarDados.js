@@ -8,9 +8,9 @@ body.addEventListener('click', event => {
     if (el.classList.contains('nameEdit')) {
         const modalNameEdit = document.querySelector('.modalNameEdit')
         modalNameEdit.showModal()
-    } 
+    }
 
-    if (el.classList.contains('emailEdit')){
+    if (el.classList.contains('emailEdit')) {
         const modalEmailEdit = document.querySelector('.modalEmailEdit')
         modalEmailEdit.showModal()
     }
@@ -44,4 +44,70 @@ body.addEventListener('click', event => {
     }
 
 })
+// ***********************************************
+
+// Envio do formulário
+const alterarDadadosValidatorClass = require('./modules/alterarDadosValidator').alterarDadadosValidatorClass
+
+body.addEventListener('click', async function (event) {
+    const el = event.target
+
+    // FORM NAME EDIT
+    if (el.classList.contains('submitFormNameEdit')) {
+        event.preventDefault()
+        const inputNameEdit = document.querySelector('.inputNameEdit').value
+        const dataForm = {
+            name: inputNameEdit
+        }
+        const insAlterarDadosValidator = new alterarDadadosValidatorClass(dataForm)
+
+        const flag = await insAlterarDadosValidator.cleanUpData()
+        if (flag == true) {
+            await insAlterarDadosValidator.newNameValidator()
+        } else {
+            return
+        }
+    }
+    // ************************************************************
+
+    // FORM EMAIL EDIT
+    if (el.classList.contains('submitFormEmailEdit')) {
+        event.preventDefault()
+        const inputEmailEdit = document.querySelector('.inputEmailEdit').value
+        const dataForm = {
+            email: inputEmailEdit
+        }
+        const insAlterarDadosValidator = new alterarDadadosValidatorClass(dataForm)
+
+        const flag = await insAlterarDadosValidator.cleanUpData()
+        if (flag == true) {
+            await insAlterarDadosValidator.newEmailValidator()
+        } else {
+            return
+        }
+    }
+    // ************************************************************
+
+    // FORM PASSWORD EDIT
+    if (el.classList.contains('submitFormPasswordEdit')) {
+        event.preventDefault()
+        const inputCurrentPasswordEdit = document.querySelector('.inputCurrentPasswordEdit').value
+        const inputNewPasswordEdit = document.querySelector('.inputNewPasswordEdit').value
+        const inputConfirmNewPassword = document.querySelector('.inputConfirmNewPassword').value
+        const dataForm = {
+            currentPassword: inputCurrentPasswordEdit,
+            newPassword: inputNewPasswordEdit,
+            confirmNewPassword: inputConfirmNewPassword
+        }
+        const insAlterarDadosValidator = new alterarDadadosValidatorClass(dataForm)
+        const flag = await insAlterarDadosValidator.cleanUpData()
+        if (flag == true) {
+            await insAlterarDadosValidator.newPasswordValidator()
+        } else {
+            return
+        }
+    }
+    // ************************************************************
+})
+// ***************************************
 // ***********************************************
