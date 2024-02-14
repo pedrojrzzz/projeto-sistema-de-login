@@ -18,35 +18,88 @@
             <div class="divConteudo">
                 <h2>Alterar dados</h2>
 
-                <p>Nome: <%- userInfo.data.name%></p> <p class="nameEdit">&#128393</p> <br>
-                <p>E-mail: <%- userInfo.data.email %></p> <p class="emailEdit">&#128393</p> <br>
-                <p>Senha: *****</p> <p class="passwordEdit">&#128393</p> <br>
+                <p>Nome: <%- userInfo.data.name%></p>
+                <p class="nameEdit">&#128393</p> <br>
+                <p>E-mail: <%- userInfo.data.email %></p>
+                <p class="emailEdit">&#128393</p> <br>
+                <p>Senha: *****</p>
+                <p class="passwordEdit">&#128393</p> <br>
 
             </div>
 
             <div class="modais">
-                
+
                 <dialog class="modalNameEdit">
                     <div class="containerModal">
-                        <form action="" class="formNameEdit">
+                        <form action="" method="POST" class="formNameEdit">
                             <div class="headerForm">
                                 <h2>Alterar Nome</h2>
-                                <span></span>
+                                <span class="iconXNameEdit"></span> <br>
+                                <%- include('includes/messages')%> <br>
+                                <input type="text" name="name" placeholder="Digite seu novo nome" required> <br>
+                                <button>Alterar nome</button>
+                            </div>
+                        </form>
+                    </div>
+                </dialog>
+
+                <dialog class="modalEmailEdit">
+                    <div class="containerModal">
+                        <form action="" method="POST" class="formEmailEdit">
+                            <div class="headerFormEmailEdit">
+                                <h2>Alterar E-mail</h2>
+                                <span class="iconXEmailEdit"></span>
+                            </div>
+                            <%- include('includes/messages') %>
+                            <div class="bodyFormEmailEdit">
+                                <input type="text" name="email" placeholder="Digite seu novo e-mail" required> <br>
+                                <button>Alterar e-mail</button>
+                            </div>
+                        </form>
+                    </div>
+                </dialog>
+
+                <dialog class="modalPasswordEdit">
+                    <div class="containerModal">
+                        <form action="" method="POST" class="formPasswordEdit">
+                            <div class="headerFormPasswordEdit">
+                                <h2>Alterar Senha</h2>
+                                <span class="iconXPasswordEdit"></span>
+                            </div>
+                            <p style="color: white; margin-top: 10px; margin-left: 15px;">Sua nova senha precisa conter pelo
+                                menos:</p>
+                            <ul style="margin-left: 35px;">
+                                <li>8 caracteres</li>
+                                <li>Uma letra maiúscula</li>
+                                <li>Uma letra minúscula</li>
+                                <li>Um número</li>
+                                <li>Um caracter especial @#$%</li>
+                            </ul>
+                            <br>
+                            <%- include ('includes/messages')%>
+                            <div class="bodyFormPasswordEdit">
+                                <input type="password" name="currentPassword" placeholder="Digite sua senha atual"
+                                    required> <br>
+                                <input type="password" name="newPassword" placeholder="Digite sua nova senha" required>
+                                <br>
+                                <input type="password" name="confirmNewPassword" placeholder="Confirme sua nova senha"
+                                    requied> <br>
+                                <button>Alterar senha</button>
                             </div>
                         </form>
                     </div>
                 </dialog>
 
             </div>
-            
+
         </div>
 
-        
+
 
 
     </main>
 
-    
+
     <script src="./assets/js/bundles/alterarDados.bundle.js"></script>
 </body>
 

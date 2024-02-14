@@ -203,20 +203,30 @@ main {
 /* MODAIS */
 
 /* MODAL NAME EDIT */
+.modalNameEdit {
+    margin-top: 230px;
+    margin-left: 37%;
+    border: 0;
+    padding: 5px;
+    background-color: transparent;
+}
+
 .modalNameEdit::backdrop{
     backdrop-filter: blur(20px);
 }
 
 .formNameEdit {
-    height: 200px;
+    height: auto;
+    padding: 15px;
     width: 370px;
     background-image: url('../img/bgAlterarDados.jpeg');
     background-size: cover;
     background-repeat: no-repeat;
+    border-radius: 1rem;
 }
 .headerForm {
     display: grid;
-    grid-template-columns: 80% 20%;
+    grid-template-columns: 95% 5%;
 }
 
 .headerForm h2 {
@@ -226,17 +236,293 @@ main {
 
 .headerForm span {
     position: absolute;
-    right: 5px;
+    right: 10px;
     background-image: url('../img/iconX.png');
     background-size: cover;
     height: 30px;
     width: 30px;
 }
 
+
 .headerForm span:hover {
-    opacity: 0.6;
-    transition: 0.2s;
+    opacity: 0.3;
+    transition: 0.1s;
+}
+
+.headerForm input {
+    height: 35px;
+    width: 340px;
+    border-radius: 20px;
+    border: none;
+    margin-top: 15px;
+    font-size: 14px;
+    text-indent: 2%;
+}
+
+.headerForm input:focus {
+    background-color: rgb(254, 254, 254);
+    outline: none;
+    border: 0 none;
+    box-shadow: none;
+}
+
+.headerForm button {
+    color: black;
+    padding: 10px;
+    width: 340px;
+    margin-top: 25px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 17px;
+    background-color: white;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+    &::before{
+        content: ' ';
+        height: 100%;
+        width: 0%;
+        border-radius: 15px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: -1;
+    }
+}
+
+.headerForm button:hover {
+    &::before {
+        background-color: greenyellow;
+        transition: 0.2s ease;
+        width: 100%;
+        
+    }
 }
 /* ************************* */
+
+/* MODAL EMAIL EDIT */
+.modalEmailEdit {
+    margin-top: 230px;
+    margin-left: 37%;
+    border: none;
+    padding: 5px;
+    background-color: transparent;
+
+}
+
+.modalEmailEdit::backdrop{
+    backdrop-filter: blur(20px);
+}
+
+.formEmailEdit {
+    height: auto;
+    padding: 15px;
+    width: 370px;
+    background-image: url('../img/bgAlterarDados.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 1rem;
+    border: none;
+}
+
+.headerFormEmailEdit {
+    display: grid;
+    grid-template-columns: 95% 5%;
+}
+
+.headerFormEmailEdit h2 {
+    text-align: center;
+    color: white;
+}
+
+.headerFormEmailEdit span {
+    position: absolute;
+    right: 10px;
+    background-image: url('../img/iconX.png');
+    background-size: cover;
+    height: 30px;
+    width: 30px;
+}
+
+.headerFormEmailEdit span:hover {
+    opacity: 0.3;
+    transition: 0.1s;
+}
+
+.bodyFormEmailEdit {
+    margin: auto;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: 100% 1fr;
+    padding: 10px;
+    gap: 20px;
+}
+
+.bodyFormEmailEdit input {
+    height: 35px;
+    width: 340px;
+    border-radius: 20px;
+    border: none;
+    margin-top: 15px;
+    font-size: 14px;
+    text-indent: 2%;
+}
+
+.bodyFormEmailEdit input:focus {
+    background-color: rgb(254, 254, 254);
+    outline: none;
+    border: 0 none;
+    box-shadow: none;
+}
+
+.bodyFormEmailEdit button {
+    color: black;
+    padding: 10px;
+    width: 340px;
+    margin-top: 7px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 17px;
+    background-color: white;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+    &::before{
+        content: ' ';
+        height: 100%;
+        width: 0%;
+        border-radius: 15px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: -1;
+    }
+}
+
+.bodyFormEmailEdit button:hover {
+    &::before {
+        background-color: greenyellow;
+        transition: 0.2s ease;
+        width: 100%;
+        
+    }
+}
+/* *************** */
+
+/* MODAL PASSWORD EDIT */
+.modalPasswordEdit {
+    margin-top: 150px;
+    margin-left: 37%;
+    border: none;
+    padding: 5px;
+    background-color: transparent;
+
+}
+
+.modalPasswordEdit::backdrop{
+    backdrop-filter: blur(20px);
+}
+
+.formPasswordEdit {
+    height: auto;
+    padding: 15px;
+    width: 370px;
+    background-image: url('../img/bgAlterarDados.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 1rem;
+    border: none;
+}
+
+.headerFormPasswordEdit {
+    display: grid;
+    grid-template-columns: 95% 5%;
+}
+
+.headerFormPasswordEdit h2 {
+    text-align: center;
+    color: white;
+}
+
+.headerFormPasswordEdit span {
+    position: absolute;
+    right: 10px;
+    background-image: url('../img/iconX.png');
+    background-size: cover;
+    height: 30px;
+    width: 30px;
+}
+
+.headerFormPasswordEdit span:hover {
+    opacity: 0.3;
+    transition: 0.1s;
+}
+
+.formPasswordEdit ul li {
+    color: white;
+}
+
+.bodyFormPasswordEdit {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: 100%;
+    padding: 3px;
+}
+
+.bodyFormPasswordEdit input {
+    height: 35px;
+    width: 340px;
+    border-radius: 20px;
+    border: none;
+    margin-top: 15px;
+    font-size: 14px;
+    text-indent: 2%;
+}
+
+.bodyFormPasswordEdit input:focus {
+    background-color: rgb(254, 254, 254);
+    outline: none;
+    border: 0 none;
+    box-shadow: none;
+}
+
+.bodyFormPasswordEdit button {
+    color: black;
+    padding: 10px;
+    width: 340px;
+    margin-top: 7px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 17px;
+    background-color: white;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+    &::before{
+        content: ' ';
+        height: 100%;
+        width: 0%;
+        border-radius: 15px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: -1;
+    }
+}
+
+.bodyFormPasswordEdit button:hover {
+    &::before {
+        background-color: greenyellow;
+        transition: 0.2s ease;
+        width: 100%;
+        
+    }
+}
+/* ******************* */
 
 /* ************* */

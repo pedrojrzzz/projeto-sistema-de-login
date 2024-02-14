@@ -13,6 +13,8 @@ var __webpack_exports__ = {};
 /*!**************************************!*\
   !*** ./frontend/mainAlterarDados.js ***!
   \**************************************/
+// Abrir modais quando clicado em alterar algum dado
+
 var body = document.querySelector('body');
 body.addEventListener('click', function (event) {
   var el = event.target;
@@ -21,12 +23,35 @@ body.addEventListener('click', function (event) {
     modalNameEdit.showModal();
   }
   if (el.classList.contains('emailEdit')) {
-    console.log('oi clicou em mim 2');
+    var modalEmailEdit = document.querySelector('.modalEmailEdit');
+    modalEmailEdit.showModal();
   }
   if (el.classList.contains('passwordEdit')) {
-    console.log('oi clicou em mim 3');
+    var modalPasswordEdit = document.querySelector('.modalPasswordEdit');
+    modalPasswordEdit.showModal();
   }
 });
+
+// ************************************************
+
+// Fechar modais quando clicado no icon X
+
+body.addEventListener('click', function (event) {
+  var el = event.target;
+  if (el.classList.contains('iconXNameEdit')) {
+    var modalNameEdit = document.querySelector('.modalNameEdit');
+    modalNameEdit.close();
+  }
+  if (el.classList.contains('iconXEmailEdit')) {
+    var modalEmailEdit = document.querySelector('.modalEmailEdit');
+    modalEmailEdit.close();
+  }
+  if (el.classList.contains('iconXPasswordEdit')) {
+    var modalPasswordEdit = document.querySelector('.modalPasswordEdit');
+    modalPasswordEdit.close();
+  }
+});
+// ***********************************************
 /******/ 	return __webpack_exports__;
 /******/ })()
 ;

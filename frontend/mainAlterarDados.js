@@ -1,3 +1,5 @@
+// Abrir modais quando clicado em alterar algum dado
+
 const body = document.querySelector('body')
 body.addEventListener('click', event => {
 
@@ -9,10 +11,37 @@ body.addEventListener('click', event => {
     } 
 
     if (el.classList.contains('emailEdit')){
-        console.log('oi clicou em mim 2')
+        const modalEmailEdit = document.querySelector('.modalEmailEdit')
+        modalEmailEdit.showModal()
     }
 
     if (el.classList.contains('passwordEdit')) {
-        console.log('oi clicou em mim 3')
+        const modalPasswordEdit = document.querySelector('.modalPasswordEdit')
+        modalPasswordEdit.showModal()
     }
 })
+
+// ************************************************
+
+// Fechar modais quando clicado no icon X
+
+body.addEventListener('click', event => {
+    const el = event.target
+
+    if (el.classList.contains('iconXNameEdit')) {
+        const modalNameEdit = document.querySelector('.modalNameEdit')
+        modalNameEdit.close()
+    }
+
+    if (el.classList.contains('iconXEmailEdit')) {
+        const modalEmailEdit = document.querySelector('.modalEmailEdit')
+        modalEmailEdit.close()
+    }
+
+    if (el.classList.contains('iconXPasswordEdit')) {
+        const modalPasswordEdit = document.querySelector('.modalPasswordEdit')
+        modalPasswordEdit.close()
+    }
+
+})
+// ***********************************************
