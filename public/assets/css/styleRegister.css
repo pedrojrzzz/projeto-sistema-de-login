@@ -121,6 +121,44 @@ nav ul li a:hover {
     overflow: hidden;
 }
 
+/* Navbar usuário logado */
+.cantoUserLogado {
+    position: absolute;
+    right: 65px;
+}
+
+.cantoUserLogado a {
+    padding: 30px;
+}
+
+.dropdownLogado:hover .dropdown-menu-logado {
+    transition: 0.2s ease; 
+    visibility: visible;
+    opacity: 1;
+}
+
+.dropdown-menu-logado {
+    position: absolute;
+    width: 150px;
+    left: -40px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.662);
+    background-color: #607D77;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.dropdown-menu-logado a {
+    display: block;
+    padding: 10px;
+    color: white;
+    font-weight: 500;
+    border-bottom: 0.3px solid rgba(35, 35, 35, 0.142);
+}
+
+.dropdown-menu-logado a:hover {
+    opacity: 0.7;
+}
+
 /* Formulário cadastro */
 
 .divFormulario {

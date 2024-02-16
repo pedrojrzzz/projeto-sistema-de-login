@@ -15,10 +15,6 @@ export class alterarDadadosValidatorClass {
                 this.formData[key] = ''
             }
 
-            if (this.formData[key].length < 2) {
-                this.errors.push('Quantidade de caracteres inválida')
-                return false
-            }
 
         }
         return true
@@ -26,6 +22,13 @@ export class alterarDadadosValidatorClass {
 
     async newNameValidator() {
         const inputNameEdit = document.querySelector('.inputNameEdit')
+
+        if (this.errors !== 0) {
+            this.showError(inputNameEdit)
+            return
+        } else {
+            this.cleanError(inputNameEdit)
+        }
 
         const regexApenasLetras = /[a-zA-Z]/
         if (!regexApenasLetras.test(this.formData.name)) {
@@ -54,6 +57,13 @@ export class alterarDadadosValidatorClass {
     async newEmailValidator() {
         const inputEmailEdit = document.querySelector('.inputEmailEdit')
 
+        if (this.errors !== 0) {
+            this.showError(inputEmailEdit)
+            return
+        } else {
+            this.cleanError(inputEmailEdit)
+        }
+
         const regexEmail = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
         if (!regexEmail.test(this.formData.email)) {
             this.errors.push('E-mail inválido')
@@ -66,11 +76,74 @@ export class alterarDadadosValidatorClass {
         if (this.errors.length == 0) {
             this.formEmailEdit.submit()
         }
+
     }
 
-    async newPasswordValidator() {}
+    async newPasswordValidator() {
+        const inputCurrentPasswordEdit = document.querySelector('.inputCurrentPassword')
+        const inputNewPasswordEdit = document.querySelector('.inputNewPasswordEdit')
+        const inputConfirmNewPassword = document.querySelector('.inputConfirmNewPassword')
 
-    showError(field) {
+        // Verificar se algum campo do form senha está vazio
+        if (inputCurrentPasswordEdit.value.length == 0) {
+            this.errors.push('Nenhum campo pode estar vazio')
+            this.showError(inputCurrentPasswordEdit, this.errors.length - 1)
+            return
+        } else {
+            this.cleanError(inputCurrentPasswordEdit)
+        }
+
+        if (inputNewPasswordEdit.value.length == 0) {
+            this.errors.push('Nenhum campo pode estar vazio')
+            this.showError(inputNewPasswordEdit, this.errors.length - 1)
+            return
+        } else {
+            this.cleanError(inputNewPasswordEdit)
+        }
+
+        if (inputConfirmNewPassword.value.length == 0) {
+            this.errors.push('Nenhum campo pode estar vazio')
+            this.showError(inputConfirmNewPassword, this.errors.length - 1)
+            return
+        } else {
+            this.cleanError(inputConfirmNewPassword)
+        }
+
+
+        if (this.errors.length == 0) {
+            this.formPasswordEdit.submit()
+        } else {
+            return
+        }
+        // *************************
+
+        // Verificar se os campos do form senha passam pelo regex de StrongPassword
+        const regexPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/;
+        if (!regexPassword.test(inputCurrentPasswordEdit.value)) {
+            this.errors.push('Senha inválida')
+            this.showError(inputCurrentPasswordEdit, this.errors.length - 1)
+        } else {
+            this.cleanError(inputCurrentPasswordEdit)
+        }
+
+        if (!regexPassword.test(inputNewPasswordEdit.value)) {
+            this.errors.push('Senha inválida')
+            this.showError(inputNewPasswordEdit, this.errors.length - 1)
+        } else {
+            this.cleanError(inputNewPasswordEdit)
+        }
+
+        if (!regexPassword.test(inputConfirmNewPassword.value)) {
+            this.errors.push('Senha inválida')
+            this.showError(inputConfirmNewPassword, this.errors.length - 1)
+        } else {
+            this.cleanError(inputConfirmNewPassword)
+        }
+
+        // *************************
+    }
+
+    showError(field, erro) {
         const proximoElemento = field.nextElementSibling;
         if (proximoElemento && proximoElemento.tagName.toLowerCase() === "p") {
             proximoElemento.remove();
@@ -79,7 +152,7 @@ export class alterarDadadosValidatorClass {
         const paragrafo = document.createElement("p");
         field.insertAdjacentElement("afterend", paragrafo);
         if (this.errors.length !== 0) {
-            paragrafo.innerHTML = this.errors[0];
+            paragrafo.innerHTML = this.errors[erro];
             paragrafo.style.color = "red";
             paragrafo.style.fontWeight = 600;
             paragrafo.style.marginLeft = 25;

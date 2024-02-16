@@ -91,7 +91,7 @@ body.addEventListener('click', async function (event) {
     // FORM PASSWORD EDIT
     if (el.classList.contains('submitFormPasswordEdit')) {
         event.preventDefault()
-        const inputCurrentPasswordEdit = document.querySelector('.inputCurrentPasswordEdit').value
+        const inputCurrentPasswordEdit = document.querySelector('.inputCurrentPassword').value
         const inputNewPasswordEdit = document.querySelector('.inputNewPasswordEdit').value
         const inputConfirmNewPassword = document.querySelector('.inputConfirmNewPassword').value
         const dataForm = {

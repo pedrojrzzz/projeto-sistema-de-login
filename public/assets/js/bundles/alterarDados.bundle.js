@@ -48,28 +48,13 @@ var alterarDadadosValidatorClass = /*#__PURE__*/function () {
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
-              _context.t0 = _regeneratorRuntime().keys(this.formData);
-            case 1:
-              if ((_context.t1 = _context.t0()).done) {
-                _context.next = 9;
-                break;
+              for (key in this.formData) {
+                if (typeof this.formData[key] !== 'string') {
+                  this.formData[key] = '';
+                }
               }
-              key = _context.t1.value;
-              if (typeof this.formData[key] !== 'string') {
-                this.formData[key] = '';
-              }
-              if (!(this.formData[key].length < 2)) {
-                _context.next = 7;
-                break;
-              }
-              this.errors.push('Quantidade de caracteres inválida');
-              return _context.abrupt("return", false);
-            case 7:
-              _context.next = 1;
-              break;
-            case 9:
               return _context.abrupt("return", true);
-            case 10:
+            case 2:
             case "end":
               return _context.stop();
           }
@@ -89,32 +74,41 @@ var alterarDadadosValidatorClass = /*#__PURE__*/function () {
           while (1) switch (_context2.prev = _context2.next) {
             case 0:
               inputNameEdit = document.querySelector('.inputNameEdit');
+              if (!(this.errors !== 0)) {
+                _context2.next = 6;
+                break;
+              }
+              this.showError(inputNameEdit);
+              return _context2.abrupt("return");
+            case 6:
+              this.cleanError(inputNameEdit);
+            case 7:
               regexApenasLetras = /[a-zA-Z]/;
               if (regexApenasLetras.test(this.formData.name)) {
-                _context2.next = 8;
+                _context2.next = 14;
                 break;
               }
               this.errors.push('Caracteres especiais não são permitidos');
               this.showError(inputNameEdit);
               return _context2.abrupt("return");
-            case 8:
+            case 14:
               this.cleanError(inputNameEdit);
-            case 9:
+            case 15:
               regexNome = /\b[A-Za-zÀ-ú][A-Za-zÀ-ú]+,?\s[A-Za-zÀ-ú][A-Za-zÀ-ú]{2,19}\b/gi;
               if (regexNome.test(this.formData.name)) {
-                _context2.next = 16;
+                _context2.next = 22;
                 break;
               }
               this.errors.push('Nome inválido');
               this.showError(inputNameEdit);
               return _context2.abrupt("return");
-            case 16:
+            case 22:
               this.cleanError(inputNameEdit);
-            case 17:
+            case 23:
               if (this.errors.length == 0) {
                 this.formNameEdit.submit();
               }
-            case 18:
+            case 24:
             case "end":
               return _context2.stop();
           }
@@ -134,21 +128,30 @@ var alterarDadadosValidatorClass = /*#__PURE__*/function () {
           while (1) switch (_context3.prev = _context3.next) {
             case 0:
               inputEmailEdit = document.querySelector('.inputEmailEdit');
+              if (!(this.errors !== 0)) {
+                _context3.next = 6;
+                break;
+              }
+              this.showError(inputEmailEdit);
+              return _context3.abrupt("return");
+            case 6:
+              this.cleanError(inputEmailEdit);
+            case 7:
               regexEmail = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
               if (regexEmail.test(this.formData.email)) {
-                _context3.next = 8;
+                _context3.next = 14;
                 break;
               }
               this.errors.push('E-mail inválido');
               this.showError(inputEmailEdit);
               return _context3.abrupt("return");
-            case 8:
+            case 14:
               this.cleanError(inputEmailEdit);
-            case 9:
+            case 15:
               if (this.errors.length == 0) {
                 this.formEmailEdit.submit();
               }
-            case 10:
+            case 16:
             case "end":
               return _context3.stop();
           }
@@ -163,13 +166,81 @@ var alterarDadadosValidatorClass = /*#__PURE__*/function () {
     key: "newPasswordValidator",
     value: function () {
       var _newPasswordValidator = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+        var inputCurrentPasswordEdit, inputNewPasswordEdit, inputConfirmNewPassword, regexPassword;
         return _regeneratorRuntime().wrap(function _callee4$(_context4) {
           while (1) switch (_context4.prev = _context4.next) {
             case 0:
+              inputCurrentPasswordEdit = document.querySelector('.inputCurrentPassword');
+              inputNewPasswordEdit = document.querySelector('.inputNewPasswordEdit');
+              inputConfirmNewPassword = document.querySelector('.inputConfirmNewPassword'); // Verificar se algum campo do form senha está vazio
+              if (!(inputCurrentPasswordEdit.value.length == 0)) {
+                _context4.next = 9;
+                break;
+              }
+              this.errors.push('Nenhum campo pode estar vazio');
+              this.showError(inputCurrentPasswordEdit, this.errors.length - 1);
+              return _context4.abrupt("return");
+            case 9:
+              this.cleanError(inputCurrentPasswordEdit);
+            case 10:
+              if (!(inputNewPasswordEdit.value.length == 0)) {
+                _context4.next = 16;
+                break;
+              }
+              this.errors.push('Nenhum campo pode estar vazio');
+              this.showError(inputNewPasswordEdit, this.errors.length - 1);
+              return _context4.abrupt("return");
+            case 16:
+              this.cleanError(inputNewPasswordEdit);
+            case 17:
+              if (!(inputConfirmNewPassword.value.length == 0)) {
+                _context4.next = 23;
+                break;
+              }
+              this.errors.push('Nenhum campo pode estar vazio');
+              this.showError(inputConfirmNewPassword, this.errors.length - 1);
+              return _context4.abrupt("return");
+            case 23:
+              this.cleanError(inputConfirmNewPassword);
+            case 24:
+              if (!(this.errors.length == 0)) {
+                _context4.next = 28;
+                break;
+              }
+              this.formPasswordEdit.submit();
+              _context4.next = 29;
+              break;
+            case 28:
+              return _context4.abrupt("return");
+            case 29:
+              // *************************
+              // Verificar se os campos do form senha passam pelo regex de StrongPassword
+              regexPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/;
+              if (!regexPassword.test(inputCurrentPasswordEdit.value)) {
+                this.errors.push('Senha inválida');
+                this.showError(inputCurrentPasswordEdit, this.errors.length - 1);
+              } else {
+                this.cleanError(inputCurrentPasswordEdit);
+              }
+              if (!regexPassword.test(inputNewPasswordEdit.value)) {
+                this.errors.push('Senha inválida');
+                this.showError(inputNewPasswordEdit, this.errors.length - 1);
+              } else {
+                this.cleanError(inputNewPasswordEdit);
+              }
+              if (!regexPassword.test(inputConfirmNewPassword.value)) {
+                this.errors.push('Senha inválida');
+                this.showError(inputConfirmNewPassword, this.errors.length - 1);
+              } else {
+                this.cleanError(inputConfirmNewPassword);
+              }
+
+              // *************************
+            case 33:
             case "end":
               return _context4.stop();
           }
-        }, _callee4);
+        }, _callee4, this);
       }));
       function newPasswordValidator() {
         return _newPasswordValidator.apply(this, arguments);
@@ -178,7 +249,7 @@ var alterarDadadosValidatorClass = /*#__PURE__*/function () {
     }()
   }, {
     key: "showError",
-    value: function showError(field) {
+    value: function showError(field, erro) {
       var proximoElemento = field.nextElementSibling;
       if (proximoElemento && proximoElemento.tagName.toLowerCase() === "p") {
         proximoElemento.remove();
@@ -186,7 +257,7 @@ var alterarDadadosValidatorClass = /*#__PURE__*/function () {
       var paragrafo = document.createElement("p");
       field.insertAdjacentElement("afterend", paragrafo);
       if (this.errors.length !== 0) {
-        paragrafo.innerHTML = this.errors[0];
+        paragrafo.innerHTML = this.errors[erro];
         paragrafo.style.color = "red";
         paragrafo.style.fontWeight = 600;
         paragrafo.style.marginLeft = 25;
@@ -379,7 +450,7 @@ body.addEventListener('click', /*#__PURE__*/function () {
             break;
           }
           event.preventDefault();
-          inputCurrentPasswordEdit = document.querySelector('.inputCurrentPasswordEdit').value;
+          inputCurrentPasswordEdit = document.querySelector('.inputCurrentPassword').value;
           inputNewPasswordEdit = document.querySelector('.inputNewPasswordEdit').value;
           inputConfirmNewPassword = document.querySelector('.inputConfirmNewPassword').value;
           _dataForm2 = {
