@@ -111,3 +111,20 @@ body.addEventListener('click', async function (event) {
 })
 // ***************************************
 // ***********************************************
+
+//Remover messages de success/errors após alguns segundos
+const divSuccess = document.querySelector('.divSuccess')
+const divError = document.querySelector('.divErro')
+
+
+function removeMessages () {
+    if (divSuccess) {
+        divSuccess.remove()
+    }
+
+    if (divError) {
+        divError.remove()
+    }
+}
+
+setTimeout(removeMessages, 10000)

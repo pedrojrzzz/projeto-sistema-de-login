@@ -74,41 +74,42 @@ var alterarDadadosValidatorClass = /*#__PURE__*/function () {
           while (1) switch (_context2.prev = _context2.next) {
             case 0:
               inputNameEdit = document.querySelector('.inputNameEdit');
-              if (!(this.errors !== 0)) {
-                _context2.next = 6;
+              if (!(inputNameEdit.value.length == 0)) {
+                _context2.next = 7;
                 break;
               }
-              this.showError(inputNameEdit);
+              this.errors.push('Nenhum campo pode estar vazio');
+              this.showError(inputNameEdit, this.errors.length - 1);
               return _context2.abrupt("return");
-            case 6:
-              this.cleanError(inputNameEdit);
             case 7:
+              this.cleanError(inputNameEdit);
+            case 8:
               regexApenasLetras = /[a-zA-Z]/;
               if (regexApenasLetras.test(this.formData.name)) {
-                _context2.next = 14;
+                _context2.next = 15;
                 break;
               }
               this.errors.push('Caracteres especiais não são permitidos');
-              this.showError(inputNameEdit);
+              this.showError(inputNameEdit, this.errors.length - 1);
               return _context2.abrupt("return");
-            case 14:
-              this.cleanError(inputNameEdit);
             case 15:
+              this.cleanError(inputNameEdit);
+            case 16:
               regexNome = /\b[A-Za-zÀ-ú][A-Za-zÀ-ú]+,?\s[A-Za-zÀ-ú][A-Za-zÀ-ú]{2,19}\b/gi;
               if (regexNome.test(this.formData.name)) {
-                _context2.next = 22;
+                _context2.next = 23;
                 break;
               }
               this.errors.push('Nome inválido');
-              this.showError(inputNameEdit);
+              this.showError(inputNameEdit, this.errors.length - 1);
               return _context2.abrupt("return");
-            case 22:
-              this.cleanError(inputNameEdit);
             case 23:
+              this.cleanError(inputNameEdit);
+            case 24:
               if (this.errors.length == 0) {
                 this.formNameEdit.submit();
               }
-            case 24:
+            case 25:
             case "end":
               return _context2.stop();
           }
@@ -128,11 +129,11 @@ var alterarDadadosValidatorClass = /*#__PURE__*/function () {
           while (1) switch (_context3.prev = _context3.next) {
             case 0:
               inputEmailEdit = document.querySelector('.inputEmailEdit');
-              if (!(this.errors !== 0)) {
+              if (!(this.errors.length !== 0)) {
                 _context3.next = 6;
                 break;
               }
-              this.showError(inputEmailEdit);
+              this.showError(inputEmailEdit, this.errors.length - 1);
               return _context3.abrupt("return");
             case 6:
               this.cleanError(inputEmailEdit);
@@ -143,7 +144,7 @@ var alterarDadadosValidatorClass = /*#__PURE__*/function () {
                 break;
               }
               this.errors.push('E-mail inválido');
-              this.showError(inputEmailEdit);
+              this.showError(inputEmailEdit, this.errors.length - 1);
               return _context3.abrupt("return");
             case 14:
               this.cleanError(inputEmailEdit);
@@ -486,6 +487,19 @@ body.addEventListener('click', /*#__PURE__*/function () {
 }());
 // ***************************************
 // ***********************************************
+
+//Remover messages de success/errors após alguns segundos
+var divSuccess = document.querySelector('.divSuccess');
+var divError = document.querySelector('.divErro');
+function removeMessages() {
+  if (divSuccess) {
+    divSuccess.remove();
+  }
+  if (divError) {
+    divError.remove();
+  }
+}
+setTimeout(removeMessages, 10000);
 })();
 
 /******/ 	return __webpack_exports__;

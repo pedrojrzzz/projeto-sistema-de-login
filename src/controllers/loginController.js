@@ -3,15 +3,20 @@ const jwt = require('jsonwebtoken')
 // **************************
 
 const renderizarLogin = (req, res) => {
+    if (res.locals.userInfo) {          // Se user estiver logado, redirecione ele para home
+        res.redirect('/')
+    }
     res.render('login')
 }
 
 const formularioLogin = async function (req, res) {
+
+    
     const loginModelClass = require('../models/loginModel').loginModelClass // LoginModelClass
     const insLoginModelClass = new loginModelClass(req.body) // Instance of object
 
     try {
-        await insLoginModelClass.cleanData() // Chama todas as funções uma atrás da outras
+        await insLoginModelClass.cleanData() // Chama todas as funções uma atrás da outra
 
         if (insLoginModelClass.error.length == 0) {
             req.flash('success', 'Usuário logado com sucesso')

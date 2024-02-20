@@ -165,8 +165,9 @@ main {
 }
 
 .divConteudo {
-    height: 200px;
-    width: 370px;
+    height: auto;
+    padding: 8px;
+    width: auto;
     border-radius: 1rem;
     background-image: url('../img/bgAlterarDados.jpeg');
     background-size: cover;
@@ -197,6 +198,46 @@ main {
     opacity: 0.7;
     cursor: pointer;
     transition: 0.2s;
+}
+
+.divErro {
+    height: 40px;
+    width: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color: rgb(213, 22, 22);
+    border: none;
+    box-shadow: 0 0 10px black;
+    margin-top: 10%;
+    margin-left: 40%;
+}
+
+.divErro li {
+    list-style-type: none;
+}
+
+
+.divSuccess {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: auto;
+    padding: 10px;
+    border-radius: 7px;
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.497);
+    background-color: rgb(116, 228, 85);
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+.divSuccess li {
+    list-style-type: none;
+    font-weight: 600;
+    
 }
 /* ************* */
 

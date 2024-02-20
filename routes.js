@@ -36,6 +36,8 @@ route.post('/changePasswordConfirm', recuperarSenhaController2.changePasswordCon
 
 // Rota de alterar dados
 route.get('/alterarDados', alterarDadosController.rendPagAlterarDados)
+route.post('/changeName', alterarDadosController.changeName)
+route.post('/changeEmail', alterarDadosController.changeEmail)
 
 // Rotas de administrador
 route.get('/administrativePanel', (req, res)=> {

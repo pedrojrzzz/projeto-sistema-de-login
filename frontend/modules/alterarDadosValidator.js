@@ -23,8 +23,9 @@ export class alterarDadadosValidatorClass {
     async newNameValidator() {
         const inputNameEdit = document.querySelector('.inputNameEdit')
 
-        if (this.errors !== 0) {
-            this.showError(inputNameEdit)
+        if (inputNameEdit.value.length == 0) {
+            this.errors.push('Nenhum campo pode estar vazio')
+            this.showError(inputNameEdit, this.errors.length - 1)
             return
         } else {
             this.cleanError(inputNameEdit)
@@ -33,7 +34,7 @@ export class alterarDadadosValidatorClass {
         const regexApenasLetras = /[a-zA-Z]/
         if (!regexApenasLetras.test(this.formData.name)) {
             this.errors.push('Caracteres especiais não são permitidos')
-            this.showError(inputNameEdit)
+            this.showError(inputNameEdit, this.errors.length - 1)
             return
         } else {
             this.cleanError(inputNameEdit)
@@ -42,7 +43,7 @@ export class alterarDadadosValidatorClass {
         const regexNome = /\b[A-Za-zÀ-ú][A-Za-zÀ-ú]+,?\s[A-Za-zÀ-ú][A-Za-zÀ-ú]{2,19}\b/gi;
         if (!regexNome.test(this.formData.name)) {
             this.errors.push('Nome inválido')
-            this.showError(inputNameEdit)
+            this.showError(inputNameEdit, this.errors.length - 1)
             return
         } else {
             this.cleanError(inputNameEdit)
@@ -57,8 +58,8 @@ export class alterarDadadosValidatorClass {
     async newEmailValidator() {
         const inputEmailEdit = document.querySelector('.inputEmailEdit')
 
-        if (this.errors !== 0) {
-            this.showError(inputEmailEdit)
+        if (this.errors.length !== 0) {
+            this.showError(inputEmailEdit, this.errors.length - 1)
             return
         } else {
             this.cleanError(inputEmailEdit)
@@ -67,7 +68,7 @@ export class alterarDadadosValidatorClass {
         const regexEmail = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
         if (!regexEmail.test(this.formData.email)) {
             this.errors.push('E-mail inválido')
-            this.showError(inputEmailEdit)
+            this.showError(inputEmailEdit, this.errors.length - 1)
             return
         } else {
             this.cleanError(inputEmailEdit)

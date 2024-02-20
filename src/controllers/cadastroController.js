@@ -11,6 +11,9 @@ const userModel = require('../models/cadastroModel').usersModel
 
 // Controller renderizar página de cadastro
 const renderizarCadastro = (req, res) => {
+    if (res.locals.userInfo) {  // Se user estiver logado, redirecione ele para home
+        res.redirect('/')
+    }
     res.render('register')
 }
 //************************************** */
