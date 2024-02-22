@@ -2,6 +2,10 @@
 const validator = require('validator')
 const nodemailer = require('nodemailer')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+const {
+    node
+} = require('webpack')
 // ************************
 
 // BANCO DE DADOS DE USUÁRIO
@@ -11,6 +15,7 @@ class alterarDadosModelClass {
     constructor(body, userInfo) {
         this.dataForm = body
         this.userInfo = userInfo
+        this.tokenJwt = 
         this.errors = []
     }
 
@@ -63,14 +68,21 @@ class alterarDadosModelClass {
         })
         if (flag) {
             try {
-                await userModel.findOneAndUpdate(
-                    {'email': this.userInfo.data.email},
-                    {$set: {'name': this.dataForm.name} }
-                    )
+                await userModel.findOneAndUpdate({
+                    'email': this.userInfo.data.email
+                }, {
+                    $set: {
+                        'name': this.dataForm.name
+                    }
+                })
                 console.log('Nome alterado com sucesso')
-                return await userModel.findOne({'email': this.userInfo.data.email}) // Retornando pro controller os dados atualizados do usuário
-            } catch (error) {console.log(error)}
-               
+                return await userModel.findOne({
+                    'email': this.userInfo.data.email
+                }) // Retornando pro controller os dados atualizados do usuário
+            } catch (error) {
+                console.log(error)
+            }
+
         } else {
             this.errors.push('Erro ao alterar nome!')
             return false
@@ -81,12 +93,12 @@ class alterarDadosModelClass {
         // Validação
         if (!validator.isEmail(this.dataForm.email)) {
             this.errors.push('E-mail inválido!')
-            return
+            return false
         }
 
         // Enviar mensagem de confirmação no e-mail atual, depois deixar usuário trocar e-mail
 
-        // Config nodemailer
+        // Config nodemailer e envio do e-mail com o link
         let transporter = nodemailer.createTransport({
             service: 'gmail',
             port: 587,
@@ -96,33 +108,65 @@ class alterarDadosModelClass {
                 pass: process.env.password,
             }
         })
+
+        const tokenGenerator = await this.tokenGenerator()
         const mailOptions = {
             from: process.env.user,
             to: this.userInfo.data.email,
             subject: 'Alteração de e-mail de cadastro (projeto-sistema-de-login)',
             html: `<h2>Link de confirmação para alteração do e-mail de cadastro</h2> </br>
-            <a href="http://localhost:3000/confirmChangeEmail/${this.tokenUsuario}">Clique aqui para alterar seu e-mail de cadastro</a> </br>
-            <p>Caso não tenha sido você que solicitou a troca de e-mail, altere sua senha por segurança</p>
+            <a href="http://localhost:3000/changeEmailConfirm/${tokenGenerator}">Clique aqui para alterar seu e-mail de cadastro</a> </br>
+            <p>Esse link tem validade de 15 minutos, caso ocorra o vencimento do link, repita o processo para alteração de e-mail</p> </br>
+            <p>Caso não tenha sido você que solicitou a troca de e-mail, altere sua senha por segurança</p> </br>
             <p>Isso é um e-mail automático, por favor não responda!</p>`
         }
-        // *****************
 
-        
-        const tokenUsuario = await this.tokenGenerator()
-        console.log(tokenUsuario)
+        /* transporter.sendMail(mailOptions, (err, info) => {
+                if (err) {
+                    console.log(`Erro ao enviar o e-mail: ${err}`)
+                } else {
+                    console.log(`E-mail enviado com sucesso: ${info.response}`)
+                }
+            }
+        ) */
+    // *****************
+
+    const payload = {
+        id: this.userInfo.data.id,
+        name: this.userInfo.data.name,
+        email: this.userInfo.data.email,
+        newEmail: this.dataForm.email,
+        token: tokenGenerator
     }
 
-    async changePassword() {}
+    const expirationTime15Minutes = Math.floor(Date.now() / 1000) + 60 * 15;
 
-    async tokenGenerator () {
-        const characters = 'ABCDEFGHIJKLMNOPQRSTUVJXYZabcdefghijklmnopqrstuvwxyz123456789'
-        let tokenUsuario = ''
-        for (let i = 0; i < 52; i++) {
-            tokenUsuario += characters.charAt(Math.floor(Math.random() * characters.length))
-        }
+    const tokenJwt = jwt.sign({
+        exp: expirationTime15Minutes,
+        data: payload,
+    }, process.env.jwtSecret)
 
-        return tokenUsuario
+    this.tokenJwt = tokenJwt // Passando o token jwt, para mim conseguir acessar no controller
+    console.log(this.tokenJwt)
+    console.log('*********')
+
+
+    return true
+
+
+}
+
+async changePassword() {}
+
+async tokenGenerator() {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVJXYZabcdefghijklmnopqrstuvwxyz123456789'
+    let tokenUsuario = ''
+    for (let i = 0; i < 52; i++) {
+        tokenUsuario += characters.charAt(Math.floor(Math.random() * characters.length))
     }
+
+    return tokenUsuario
+}
 }
 
 module.exports.alterarDadosModelClass = alterarDadosModelClass

@@ -183,12 +183,12 @@ class validandoCadastroBackend {
             <p>Isso é um e-mail automático, por favor não responda!</p>`
         }
 
-        transporter.sendMail(mailOptions, (error, info) => {
-            if (error) console.log("Erro ao enviar o email: " + error);
-            else {
-                console.log("E-mail enviado " + info.response);
-            }
-        });
+        try {
+            const info = await transporter.sendMail(mailOptions)
+            console.log(info.response)
+        } catch(error) {
+            console.log(`Erro ao enviar o e-mail: ${error}`)
+        }
     }
 
 

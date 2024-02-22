@@ -75,20 +75,36 @@ const changeName = async function (req, res) {
 const changeEmail = async function (req, res) {
     res.send(req.body)
 
-        const insAlterarDadosModel = new alterarDadosModelClass(req.body, res.locals.userInfo)
+    const insAlterarDadosModel = new alterarDadosModelClass(req.body, res.locals.userInfo)
 
-        // Se cleanUp dos dados for falso retorne, caso for verdadeiro continue o código
-        const flag1 = await insAlterarDadosModel.cleanUpData()
-        if (flag1 == false) {
-            req.session.save(function() {
-                req.flash('error', 'Erro ao alterar e-mail, tente novamente!')
-                return res.redirect('/alterarDados')
-            })
-            return
-        }
 
-        const flag2 = await insAlterarDadosModel.changeEmail()
+    // Se cleanUp dos dados for falso retorne, caso for verdadeiro continue o código
+    const flag1 = await insAlterarDadosModel.cleanUpData()
+    if (flag1 == false) {
+        req.session.save(function () {
+            req.flash('error', 'Erro ao alterar e-mail, tente novamente!')
+            return res.redirect('/alterarDados')
+        })
+        return
     }
+
+    try {
+        const flag2 = await insAlterarDadosModel.changeEmail()
+        res.locals.user = insAlterarDadosModel.tokenJwt
+        console.log(res.locals.user)
+        res.locals.userInfo = jwt.decode(insAlterarDadosModel.tokenJwt, process.env.jwtSecret)
+        console.log(res.locals.userInfo)
+
+    } catch (error) {
+        console.log(`Função changeEmail falhou: ${error}`)
+    }
+
+}
+
+
+const changeEmailConfirm = async function (req, res) {
+   console.log(res.locals.userInfo)
+}
 
 
 const changePassword = async function (req, res) {
@@ -98,5 +114,6 @@ const changePassword = async function (req, res) {
 
 module.exports.rendPagAlterarDados = rendPagAlterarDados
 module.exports.changeName = changeName
+module.exports.changeEmailConfirm = changeEmailConfirm
 module.exports.changeEmail = changeEmail
 module.exports.changePassword = changePassword
