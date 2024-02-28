@@ -1,10 +1,17 @@
 // LIBS
 const jwt = require('jsonwebtoken')
+const {
+    times
+} = require('list')
 // ****************
 
 // Model requerido
 const alterarDadosModelClass = require('../models/alterarDadosModel').alterarDadosModelClass
 // ***********************
+
+// Banco de dados
+const userModel = require('../models/cadastroModel').usersModel
+// ****************
 
 const rendPagAlterarDados = async function (req, res) {
     if (res.locals.userInfo) {
@@ -60,8 +67,7 @@ const changeName = async function (req, res) {
                 exp: expirationTime7Days,
                 data: payload
             }, process.env.jwtSecret)
-            req.session.user = token
-            res.locals.updateUserInfo()
+            res.locals.updateUserInfo2(token)
             console.log(res.locals.userInfo)
             req.flash('success', 'Nome alterado com sucesso')
             return res.redirect('/alterarDados')
@@ -73,7 +79,6 @@ const changeName = async function (req, res) {
 }
 
 const changeEmail = async function (req, res) {
-    res.send(req.body)
 
     const insAlterarDadosModel = new alterarDadosModelClass(req.body, res.locals.userInfo)
 
@@ -90,24 +95,82 @@ const changeEmail = async function (req, res) {
 
     try {
         const flag2 = await insAlterarDadosModel.changeEmail()
-        res.locals.user = insAlterarDadosModel.tokenJwt
-        console.log(res.locals.user)
-        res.locals.userInfo = jwt.decode(insAlterarDadosModel.tokenJwt, process.env.jwtSecret)
-        console.log(res.locals.userInfo)
 
+        if (flag2 == false) {
+            req.session.save(function () {
+                req.flash('error', 'Erro ao alterar e-mail, tente novamente!')
+                return res.redirect('/alterarDados')
+            })
+            return
+        }
+        
+        req.session.save(function() {
+            res.locals.user = insAlterarDadosModel.tokenJwt
+        /* res.locals.userInfo = jwt.decode(insAlterarDadosModel.tokenJwt, process.env.jwtSecret) */
+        res.locals.updateUserInfo2(insAlterarDadosModel.tokenJwt)
+        res.locals.userInfo = jwt.decode(insAlterarDadosModel.tokenJwt, process.env.jwtSecret) 
+        console.log(res.locals.userInfo)
+        req.session.confirmTokens = insAlterarDadosModel.tokenEmail // Passando o tokenGenerator para mim validar se o token bate na confirmação
+        return res.redirect('/alterarDados')
+    })
     } catch (error) {
         console.log(`Função changeEmail falhou: ${error}`)
+        return res.render('404')
     }
 
 }
 
 
 const changeEmailConfirm = async function (req, res) {
-   console.log(res.locals.userInfo)
+
+    if (res.locals.userInfo) { // Se user estiver logado
+        console.log('passou no primeiro if')
+        console.log(res.locals.userInfo)
+        console.log(res.locals.confirmTokens)
+        if (res.locals.userInfo.data.token) { // Se dentro do cookie tiver o token
+            console.log(req.params)
+            console.log(res.locals.confirmTokens)
+            res.redirect('/alterarDados')
+            
+        }
+    }
+    return res.render('404')
 }
 
 
 const changePassword = async function (req, res) {
+
+    if (!res.locals.userInfo) {
+        return res.redirect('/')
+    }
+
+    const insAlterarDadosModel = new alterarDadosModelClass(req.body, res.locals.userInfo)
+
+    const flag = await insAlterarDadosModel.cleanUpData()  // Limpeza dos dados
+    if (flag == false) {
+        req.session.save(function() {
+            req.flash('error', insAlterarDadosModel.errors[0])
+            return 
+        })
+        return res.redirect('/alterarDados')
+    }
+
+    const flag2 = await insAlterarDadosModel.changePassword() // Método para alterar a senha
+    if (flag2 == false) {
+        req.session.save(function() {
+            req.flash('error', insAlterarDadosModel.errors[0])
+            return
+        })
+        return res.redirect('/alterarDados')
+    }
+
+
+    req.session.save(function() {
+        req.flash('success', 'Senha alterada com sucesso!')
+        return res.redirect('/alterarDados')
+    })
+
+    
 
 }
 

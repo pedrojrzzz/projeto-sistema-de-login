@@ -138,6 +138,9 @@ nav ul li a:hover {
 }
 
 .dropdown-menu-logado {
+    display: grid;
+    align-items: center;
+    justify-content: initial;
     position: absolute;
     width: 150px;
     left: -40px;
@@ -148,16 +151,54 @@ nav ul li a:hover {
 }
 
 .dropdown-menu-logado a {
-    display: block;
+    display: flex;
     padding: 10px;
     color: white;
     font-weight: 500;
     border-bottom: 0.3px solid rgba(35, 35, 35, 0.142);
+    
 }
 
 .dropdown-menu-logado a:hover {
     opacity: 0.7;
 }
+
+.logoUserLogado {
+    height: 20px;
+    width: 20px;
+    background-image: url('../img/avatar.png');
+    background-size: cover;
+
+    margin-right: 8px;
+}
+
+.nameUserButton:hover {
+    cursor: auto;
+}
+
+.logoLogoutUser {
+    height: 20px;
+    width: 20px;
+    background-image: url('../img/logout.png');
+    background-size: cover;
+    margin-right: 10px;
+}
+
+.userLogoutButton:hover {
+    background-color: red;
+    transition: 0.2s;
+}
+
+.logoUserSettings {
+    height: 20px;
+    width: 20px;
+    background-image: url('../img/settings.png');
+    background-size: cover;
+    margin-right: 10px;
+
+}
+
+/* ********************* */
 
 /* Formulário cadastro */
 

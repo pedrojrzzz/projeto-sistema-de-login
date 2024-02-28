@@ -110,13 +110,27 @@ export class alterarDadadosValidatorClass {
             this.cleanError(inputConfirmNewPassword)
         }
 
-
-        if (this.errors.length == 0) {
-            this.formPasswordEdit.submit()
-        } else {
-            return
-        }
         // *************************
+
+        // Verificando se a nova senha e a confirmação são iguais
+        if (inputNewPasswordEdit.value !== inputConfirmNewPassword.value) {
+            this.errors.push('Sua nova senha não coincidem')
+            this.showError(inputConfirmNewPassword, this.errors.length - 1)
+            return
+        } else {
+            this.cleanError(inputConfirmNewPassword)
+        }
+        // **************************
+
+        // Verificar se a nova senha e a antiga são a mesma
+        if (inputCurrentPasswordEdit.value == inputNewPasswordEdit.value) {
+            this.errors.push('Sua senha antiga e sua nova senha não podem ser a mesma.')
+            this.showError(inputCurrentPasswordEdit, this.errors.length - 1)
+            return
+        } else {
+            this.cleanError(inputCurrentPasswordEdit)
+        }
+        // **************************
 
         // Verificar se os campos do form senha passam pelo regex de StrongPassword
         const regexPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/;
@@ -142,6 +156,14 @@ export class alterarDadadosValidatorClass {
         }
 
         // *************************
+
+        if (this.errors.length > 0) {
+            console.log('Possui erro no array')
+            return
+        } else {
+            console.log('enviando formulario')
+            this.formPasswordEdit.submit()
+        }
     }
 
     showError(field, erro) {

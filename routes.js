@@ -39,6 +39,7 @@ route.get('/alterarDados', alterarDadosController.rendPagAlterarDados)
 route.post('/changeName', alterarDadosController.changeName)
 route.post('/changeEmail', alterarDadosController.changeEmail)
 route.get('/changeEmailConfirm/:tokenChangeEmail', alterarDadosController.changeEmailConfirm)
+route.post('/changePasswordUser', alterarDadosController.changePassword)
 
 // Rotas de administrador
 route.get('/administrativePanel', (req, res)=> {

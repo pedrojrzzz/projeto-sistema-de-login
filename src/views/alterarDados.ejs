@@ -55,7 +55,7 @@
                                 <h2>Alterar E-mail</h2>
                                 <span class="iconXEmailEdit"></span> <br>
                             </div>
-                            <%- include('includes/messages') %> <br>
+
                             <div class="bodyFormEmailEdit">
                                 <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                                 <input type="email" name="email" class="inputEmailEdit" placeholder="Digite seu novo e-mail" required>
@@ -68,7 +68,7 @@
 
                 <dialog class="modalPasswordEdit">
                     <div class="containerModal">
-                        <form action="" method="POST" class="formPasswordEdit">
+                        <form action="changePasswordUser" method="POST" class="formPasswordEdit">
                             <div class="headerFormPasswordEdit">
                                 <h2>Alterar Senha</h2>
                                 <span class="iconXPasswordEdit"></span>
@@ -84,10 +84,10 @@
                                 <li>Um caracter especial @#$%</li>
                             </ul>
                             <br>
-                            <%- include ('includes/messages')%>
+
                             <div class="bodyFormPasswordEdit">
                                 <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                                <input type="password" name="inputCurrentPasswordEdit" class="inputCurrentPassword" placeholder="Digite sua senha atual"
+                                <input type="password" name="CurrentPasswordEdit" class="inputCurrentPassword" placeholder="Digite sua senha atual"
                                     required> <br>
                                 <input type="password" name="newPassword" class="inputNewPasswordEdit" placeholder="Digite sua nova senha" required>
                                 <br>

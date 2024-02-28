@@ -15,7 +15,8 @@ class alterarDadosModelClass {
     constructor(body, userInfo) {
         this.dataForm = body
         this.userInfo = userInfo
-        this.tokenJwt = 
+        this.tokenJwt = ''
+        this.tokenEmail = ''
         this.errors = []
     }
 
@@ -23,26 +24,26 @@ class alterarDadosModelClass {
         this.dataForm = {
             name: this.dataForm.name || '',
             email: this.dataForm.email || '',
-            password: this.dataForm.password || '',
+            currentPassword: this.dataForm.CurrentPasswordEdit || '',
+            newPassword: this.dataForm.newPassword || '',
+            confirmNewPassword: this.dataForm.confirmNewPassword || '',
         }
 
         for (let key in this.dataForm) {
 
             if (this.dataForm[key].length > 50) {
                 this.errors.push('Quantidade de caracteres inválida')
-                console.log('flag1')
                 return
             }
 
             if (typeof this.dataForm[key] !== 'string') {
                 this.dataForm[key] = ''
                 this.errors.push('Campo inválido')
-                console.log('flag2')
                 return
             }
 
         }
-        console.log(this.errors)
+
         if (this.errors.length == 0) {
             console.log(this.dataForm)
             return true
@@ -89,6 +90,7 @@ class alterarDadosModelClass {
         }
     }
 
+
     async changeEmail() {
         // Validação
         if (!validator.isEmail(this.dataForm.email)) {
@@ -96,7 +98,10 @@ class alterarDadosModelClass {
             return false
         }
 
-        // Enviar mensagem de confirmação no e-mail atual, depois deixar usuário trocar e-mail
+        if (this.errors.length !== 0) {
+            return false
+        }
+
 
         // Config nodemailer e envio do e-mail com o link
         let transporter = nodemailer.createTransport({
@@ -121,52 +126,106 @@ class alterarDadosModelClass {
             <p>Isso é um e-mail automático, por favor não responda!</p>`
         }
 
-        /* transporter.sendMail(mailOptions, (err, info) => {
-                if (err) {
-                    console.log(`Erro ao enviar o e-mail: ${err}`)
-                } else {
-                    console.log(`E-mail enviado com sucesso: ${info.response}`)
-                }
+        transporter.sendMail(mailOptions, (err, info) => {
+            if (err) {
+                console.log(`Erro ao enviar o e-mail: ${err}`)
+            } else {
+                console.log(`E-mail enviado com sucesso: ${info.response}`)
             }
-        ) */
-    // *****************
+        })
+        // *****************
 
-    const payload = {
-        id: this.userInfo.data.id,
-        name: this.userInfo.data.name,
-        email: this.userInfo.data.email,
-        newEmail: this.dataForm.email,
-        token: tokenGenerator
+        // Salvando novo cookie
+        const payload = {
+            id: this.userInfo.data.id,
+            name: this.userInfo.data.name,
+            email: this.userInfo.data.email,
+            newEmail: this.dataForm.email,
+            token: tokenGenerator
+        }
+
+        const expirationTime15Minutes = Math.floor(Date.now() / 1000) + 60 * 15;
+
+        const tokenJwt = jwt.sign({
+            exp: expirationTime15Minutes,
+            data: payload,
+        }, process.env.jwtSecret)
+
+        this.tokenJwt = tokenJwt // Passando o token jwt, para mim conseguir acessar no controller
+        this.tokenEmail = tokenGenerator // Passando o tokenEmail para mim verificar se os token batem
+
+        return true
+
+
     }
 
-    const expirationTime15Minutes = Math.floor(Date.now() / 1000) + 60 * 15;
+    async changePassword() {
+        const userModel = require('../models/cadastroModel').usersModel
+        console.log(this.dataForm)
+        console.log(this.userInfo)
 
-    const tokenJwt = jwt.sign({
-        exp: expirationTime15Minutes,
-        data: payload,
-    }, process.env.jwtSecret)
+        try {
+        const userExist = await userModel.findOne({email: this.userInfo.data.email})
+        console.log(userExist)
 
-    this.tokenJwt = tokenJwt // Passando o token jwt, para mim conseguir acessar no controller
-    console.log(this.tokenJwt)
-    console.log('*********')
+        if (!userExist) {   // Verificando se usuário existe no Banco de Dados
+            this.errors.push('Usuário não encontrado')
+            return false
+        }
+        console.log(this.dataForm.currentPassword)
+        console.log(userExist.password)
+        
+        if (!bcrypt.compareSync(this.dataForm.currentPassword, userExist.password)) {  // Validação se a currentPassword está correta
+            this.errors.push('Senha atual está incorreta')
+            console.log('Senha incorreta')
+            return false   
+        }
 
+        if (!validator.isStrongPassword(this.dataForm.currentPassword)) {  // Validando senha atual do usuário
+            this.errors.push('Sua senha atual não confere os padrões de senha do servidor')
+            return false
+        }
 
-    return true
+        if (!validator.isStrongPassword(this.dataForm.confirmNewPassword)) {  // Validando confirmação de nova senha do servidor
+            this.errors.push('Sua confirmação de senha nova não confere os padrões de senha do servidor')
+            return false
+        }
 
+        if (!validator.isStrongPassword(this.dataForm.newPassword)) {  // Validando nova senha do usuário
+            console.log('Senha nova não confere os padrões de senha')
+            this.errors.push('Sua senha não é conforme os padrões')
+            return false
+        }
 
-}
+        // Código que altera a senha no banco de dados
 
-async changePassword() {}
+        const salt = bcrypt.genSaltSync(10)
+        const hashSenha = bcrypt.hashSync(this.dataForm.newPassword, salt)
+        await userModel.findOneAndUpdate({
+            'email': this.userInfo.data.email
+        }, {
+            $set: {
+                'password': this.dataForm.newPassword
+            }
+        })
 
-async tokenGenerator() {
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVJXYZabcdefghijklmnopqrstuvwxyz123456789'
-    let tokenUsuario = ''
-    for (let i = 0; i < 52; i++) {
-        tokenUsuario += characters.charAt(Math.floor(Math.random() * characters.length))
+        return true
+
+        } catch (error) {
+            console.log(error)
+            return false
+        }
     }
 
-    return tokenUsuario
-}
+    async tokenGenerator() {
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVJXYZabcdefghijklmnopqrstuvwxyz123456789'
+        let tokenUsuario = ''
+        for (let i = 0; i < 52; i++) {
+            tokenUsuario += characters.charAt(Math.floor(Math.random() * characters.length))
+        }
+
+        return true
+    }
 }
 
 module.exports.alterarDadosModelClass = alterarDadosModelClass

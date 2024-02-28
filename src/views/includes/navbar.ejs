@@ -47,10 +47,9 @@
         <li class="dropdownLogado">
           <div class="logoUser"></div>
           <div class="dropdown-menu-logado">
-            <a href="/login" class="entrarButton"><%= userInfo.data.name %></a>
-            <a href="/alterarDados" class="entrarButton">Alterar dados</a>
-            <a href="/logout" class="criarContaButton">Logout</a>
-            <i class="fa-solid fa-user"></i>
+            <a href="/" class="nameUserButton"> <div class="logoUserLogado"></div> <%= userInfo.data.name %></a>
+            <a href="/alterarDados" class="userSettingsButton"> <div class="logoUserSettings"> </div>Alterar dados</a>
+            <a href="/logout" class="userLogoutButton"><div class="logoLogoutUser"></div> Logout</a>
           </div>
         </li>
       </ul>

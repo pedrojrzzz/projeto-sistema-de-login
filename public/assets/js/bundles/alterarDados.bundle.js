@@ -204,17 +204,27 @@ var alterarDadadosValidatorClass = /*#__PURE__*/function () {
             case 23:
               this.cleanError(inputConfirmNewPassword);
             case 24:
-              if (!(this.errors.length == 0)) {
-                _context4.next = 28;
+              if (!(inputNewPasswordEdit.value !== inputConfirmNewPassword.value)) {
+                _context4.next = 30;
                 break;
               }
-              this.formPasswordEdit.submit();
-              _context4.next = 29;
-              break;
-            case 28:
+              this.errors.push('Sua nova senha não coincidem');
+              this.showError(inputConfirmNewPassword, this.errors.length - 1);
               return _context4.abrupt("return");
-            case 29:
-              // *************************
+            case 30:
+              this.cleanError(inputConfirmNewPassword);
+            case 31:
+              if (!(inputCurrentPasswordEdit.value == inputNewPasswordEdit.value)) {
+                _context4.next = 37;
+                break;
+              }
+              this.errors.push('Sua senha antiga e sua nova senha não podem ser a mesma.');
+              this.showError(inputCurrentPasswordEdit, this.errors.length - 1);
+              return _context4.abrupt("return");
+            case 37:
+              this.cleanError(inputCurrentPasswordEdit);
+            case 38:
+              // **************************
               // Verificar se os campos do form senha passam pelo regex de StrongPassword
               regexPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/;
               if (!regexPassword.test(inputCurrentPasswordEdit.value)) {
@@ -237,7 +247,16 @@ var alterarDadadosValidatorClass = /*#__PURE__*/function () {
               }
 
               // *************************
-            case 33:
+              if (!(this.errors.length > 0)) {
+                _context4.next = 47;
+                break;
+              }
+              console.log('Possui erro no array');
+              return _context4.abrupt("return");
+            case 47:
+              console.log('enviando formulario');
+              this.formPasswordEdit.submit();
+            case 49:
             case "end":
               return _context4.stop();
           }
