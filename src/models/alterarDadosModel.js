@@ -205,7 +205,7 @@ class alterarDadosModelClass {
             'email': this.userInfo.data.email
         }, {
             $set: {
-                'password': this.dataForm.newPassword
+                'password': hashSenha
             }
         })
 

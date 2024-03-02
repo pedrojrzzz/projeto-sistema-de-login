@@ -206,6 +206,7 @@ nav ul li a:hover {
     width: 100vw;
     display: flex;
     justify-content: center;
+    margin-top: 50px;
 }
 
 
@@ -292,6 +293,10 @@ nav ul li a:hover {
     }
 }
 
+.redirectLogin {
+    margin-left: 20px;
+    margin-top: 15px;
+}
 
 
 

@@ -22,7 +22,7 @@ class loginModelClass {
 
             if (key.length < 1 || key.length == 'undefined') {
                 this.error.push('E-mail ou Senha inválidos.')
-                return
+                return false
             }
 
             if (typeof this.body[key] !== 'string') {
@@ -33,21 +33,22 @@ class loginModelClass {
 
         this.body = {email: dataClean[1], password: dataClean[2]} // Passando para this.body todos os dados limpos
 
-        await this.dataValidation()
+        return true
+
     }
 
     async dataValidation() {
         if (!validator.isEmail(this.body.email)) {
             this.error.push('E-mail ou Senha inválidos')
-            return
+            return false
         }
 
         if (!validator.isStrongPassword(this.body.password)) {
             this.error.push('E-mail ou Senha inválidos')
-            return
+            return false
         }
 
-        this.user = await this.logarUser()
+        /* this.user = await this.logarUser() */
     }
 
     async logarUser() {
@@ -55,17 +56,17 @@ class loginModelClass {
 
         if (!this.user) {
             this.error.push('E-mail ou Senha inválidos')
-            return
+            return false
         }
 
-        const passwordCorrect = bcrypt.compareSync(this.body.password, this.user.password)
-        if (!passwordCorrect) {
+        const passwordCorrect = bcrypt.compareSync(this.body.password, this.user.password)   
+        if (!passwordCorrect) {                                                            
             this.error.push('E-mail ou Senha inválidos')
             this.user = null
-            return
-        } else {
-            return this.user
-        }
+            return false
+        } 
+
+
     }
 
     
