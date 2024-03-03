@@ -70,23 +70,6 @@ body.addEventListener('click', async function (event) {
     }
     // ************************************************************
 
-    // FORM EMAIL EDIT
-    if (el.classList.contains('submitFormEmailEdit')) {
-        event.preventDefault()
-        const inputEmailEdit = document.querySelector('.inputEmailEdit').value
-        const dataForm = {
-            email: inputEmailEdit
-        }
-        const insAlterarDadosValidator = new alterarDadadosValidatorClass(dataForm)
-
-        const flag = await insAlterarDadosValidator.cleanUpData()
-        if (flag == true) {
-            await insAlterarDadosValidator.newEmailValidator()
-        } else {
-            return
-        }
-    }
-    // ************************************************************
 
     // FORM PASSWORD EDIT
     if (el.classList.contains('submitFormPasswordEdit')) {

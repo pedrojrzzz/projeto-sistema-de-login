@@ -408,7 +408,7 @@ body.addEventListener('click', function (event) {
 var alterarDadadosValidatorClass = (__webpack_require__(/*! ./modules/alterarDadosValidator */ "./frontend/modules/alterarDadosValidator.js").alterarDadadosValidatorClass);
 body.addEventListener('click', /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(event) {
-    var el, inputNameEdit, dataForm, insAlterarDadosValidator, flag, inputEmailEdit, _dataForm, _insAlterarDadosValidator, _flag, inputCurrentPasswordEdit, inputNewPasswordEdit, inputConfirmNewPassword, _dataForm2, _insAlterarDadosValidator2, _flag2;
+    var el, inputNameEdit, dataForm, insAlterarDadosValidator, flag, inputCurrentPasswordEdit, inputNewPasswordEdit, inputConfirmNewPassword, _dataForm, _insAlterarDadosValidator, _flag;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
@@ -439,62 +439,36 @@ body.addEventListener('click', /*#__PURE__*/function () {
         case 14:
           return _context.abrupt("return");
         case 15:
-          if (!el.classList.contains('submitFormEmailEdit')) {
-            _context.next = 29;
-            break;
-          }
-          event.preventDefault();
-          inputEmailEdit = document.querySelector('.inputEmailEdit').value;
-          _dataForm = {
-            email: inputEmailEdit
-          };
-          _insAlterarDadosValidator = new alterarDadadosValidatorClass(_dataForm);
-          _context.next = 22;
-          return _insAlterarDadosValidator.cleanUpData();
-        case 22:
-          _flag = _context.sent;
-          if (!(_flag == true)) {
-            _context.next = 28;
-            break;
-          }
-          _context.next = 26;
-          return _insAlterarDadosValidator.newEmailValidator();
-        case 26:
-          _context.next = 29;
-          break;
-        case 28:
-          return _context.abrupt("return");
-        case 29:
           if (!el.classList.contains('submitFormPasswordEdit')) {
-            _context.next = 45;
+            _context.next = 31;
             break;
           }
           event.preventDefault();
           inputCurrentPasswordEdit = document.querySelector('.inputCurrentPassword').value;
           inputNewPasswordEdit = document.querySelector('.inputNewPasswordEdit').value;
           inputConfirmNewPassword = document.querySelector('.inputConfirmNewPassword').value;
-          _dataForm2 = {
+          _dataForm = {
             currentPassword: inputCurrentPasswordEdit,
             newPassword: inputNewPasswordEdit,
             confirmNewPassword: inputConfirmNewPassword
           };
-          _insAlterarDadosValidator2 = new alterarDadadosValidatorClass(_dataForm2);
-          _context.next = 38;
-          return _insAlterarDadosValidator2.cleanUpData();
-        case 38:
-          _flag2 = _context.sent;
-          if (!(_flag2 == true)) {
-            _context.next = 44;
+          _insAlterarDadosValidator = new alterarDadadosValidatorClass(_dataForm);
+          _context.next = 24;
+          return _insAlterarDadosValidator.cleanUpData();
+        case 24:
+          _flag = _context.sent;
+          if (!(_flag == true)) {
+            _context.next = 30;
             break;
           }
-          _context.next = 42;
-          return _insAlterarDadosValidator2.newPasswordValidator();
-        case 42:
-          _context.next = 45;
+          _context.next = 28;
+          return _insAlterarDadosValidator.newPasswordValidator();
+        case 28:
+          _context.next = 31;
           break;
-        case 44:
+        case 30:
           return _context.abrupt("return");
-        case 45:
+        case 31:
         case "end":
           return _context.stop();
       }

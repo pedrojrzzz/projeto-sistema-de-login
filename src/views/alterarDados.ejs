@@ -16,14 +16,18 @@
 
         <div class="divContainer">
             <div class="divConteudo">
-                <h2>Alterar dados</h2>
+                <h2>Dados cadastrais</h2>
                 <%- include ('includes/messages') %>
-                <p>Nome: <%- userInfo.data.name%></p>
-                <p class="nameEdit">&#128393</p> <br>
-                <p>E-mail: <%- userInfo.data.email %></p>
-                <p class="emailEdit">&#128393</p> <br>
-                <p>Senha: *****</p>
-                <p class="passwordEdit">&#128393</p> <br>
+
+                <p>Nome</p> <br>
+                <input type="text" value="<%- userInfo.data.name%>" readonly>
+                 <div class="nameEdit"></div> <br>
+
+                <p>E-mail</p> <br>
+                <input type="text" value="<%- userInfo.data.email %>" readonly> <br>
+                <p>Senha</p> <br>
+                <input type="text" value="******" readonly>
+                <div class="passwordEdit"></div> <br>
 
             </div>
 
@@ -48,23 +52,6 @@
                     </div>
                 </dialog>
 
-                <dialog class="modalEmailEdit">
-                    <div class="containerModal">
-                        <form action="changeEmail" method="POST" class="formEmailEdit">
-                            <div class="headerFormEmailEdit">
-                                <h2>Alterar E-mail</h2>
-                                <span class="iconXEmailEdit"></span> <br>
-                            </div>
-
-                            <div class="bodyFormEmailEdit">
-                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                                <input type="email" name="email" class="inputEmailEdit" placeholder="Digite seu novo e-mail" required>
-                                <br>
-                                <button class="submitFormEmailEdit">Alterar e-mail</button>
-                            </div>
-                        </form>
-                    </div>
-                </dialog>
 
                 <dialog class="modalPasswordEdit">
                     <div class="containerModal">

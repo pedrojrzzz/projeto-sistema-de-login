@@ -209,35 +209,58 @@ main {
     height: auto;
     padding: 8px;
     width: auto;
-    border-radius: 1rem;
-    background-image: url('../img/bgAlterarDados.jpeg');
-    background-size: cover;
-    background-repeat: no-repeat;
+    border-radius: 5px;
+    background-image: url('../img/bgAlterarDados2.png');
+    background-size: 170%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.51);
 }
 
 .divConteudo > h2 {
     text-align: center;
-    margin-top: 8px;
+    margin-top: 2px;
+    margin-bottom: 17px;
     font-size: 28px;
+    font-weight: 550;
     color: white;
-    letter-spacing: 1px;
 }
 
 .divConteudo > p {
     display: inline-block;
     color: white;
-    font-size: 20px;
+    font-size: 18px;
     margin-left: 20px;
-    font-weight: bolder;
-    margin-top: 15px;
+    font-weight: 500;
     
 }
 
+.divConteudo > input {
+    padding: 6px;
+    font-size: 15px;
+    border-radius: 3.5px;
+    margin-left: 20px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: none;
+}
+
+.divConteudo > input:focus {
+    border: none;
+    box-shadow: none;
+    outline: none;
+}
+
+.nameEdit, .passwordEdit {
+    display: inline-block;
+    height: 21px;
+    width: 21px;
+    background-image: url('../img/edit.png');
+    background-size: cover;
+}
+
+
 .divConteudo > .nameEdit:hover, .emailEdit:hover, .passwordEdit:hover {
-    color: greenyellow;
-    opacity: 0.7;
     cursor: pointer;
+    opacity: 0.5;
     transition: 0.2s;
 }
 
@@ -250,9 +273,9 @@ main {
     border-radius: 5px;
     background-color: rgb(213, 22, 22);
     border: none;
-    box-shadow: 0 0 10px black;
     margin-top: 10%;
     margin-left: 40%;
+    margin-bottom: 7px;
 }
 
 .divErro li {
@@ -269,10 +292,10 @@ main {
     padding: 10px;
     border-radius: 7px;
     border: none;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.497);
     background-color: rgb(116, 228, 85);
     margin-left: 5px;
     margin-top: 5px;
+    margin-bottom: 7px;
 }
 
 .divSuccess li {
@@ -302,7 +325,7 @@ main {
     height: auto;
     padding: 15px;
     width: 370px;
-    background-image: url('../img/bgAlterarDados.jpeg');
+    background-image: url('../img/bgAlterarDados2.png');
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: 1rem;
@@ -394,115 +417,6 @@ main {
 }
 /* ************************* */
 
-/* MODAL EMAIL EDIT */
-.modalEmailEdit {
-    margin-top: 230px;
-    margin-left: 37%;
-    border: none;
-    padding: 5px;
-    background-color: transparent;
-
-}
-
-.modalEmailEdit::backdrop{
-    backdrop-filter: blur(20px);
-}
-
-.formEmailEdit {
-    height: auto;
-    padding: 15px;
-    width: 370px;
-    background-image: url('../img/bgAlterarDados.jpeg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    border-radius: 1rem;
-    border: none;
-}
-
-.headerFormEmailEdit {
-    display: grid;
-    grid-template-columns: 100%;
-}
-
-.headerFormEmailEdit h2 {
-    text-align: center;
-    color: white;
-}
-
-.headerFormEmailEdit span {
-    position: absolute;
-    right: 10px;
-    background-image: url('../img/iconX.png');
-    background-size: cover;
-    height: 30px;
-    width: 30px;
-}
-
-.headerFormEmailEdit span:hover {
-    opacity: 0.3;
-    transition: 0.1s;
-}
-
-.bodyFormEmailEdit {
-    margin: auto;
-    display: grid;
-    align-items: center;
-    justify-content: center;
-    grid-template-columns: 100%;
-    gap: 2px;
-}
-
-.bodyFormEmailEdit input {
-    height: 35px;
-    width: 340px;
-    border-radius: 20px;
-    border: none;
-    margin-top: 3px;
-    font-size: 14px;
-    text-indent: 2%;
-}
-
-.bodyFormEmailEdit input:focus {
-    background-color: rgb(254, 254, 254);
-    outline: none;
-    border: 0 none;
-    box-shadow: none;
-}
-
-.bodyFormEmailEdit button {
-    color: black;
-    padding: 10px;
-    width: 340px;
-    margin-top: 7px;
-    font-size: 16px;
-    letter-spacing: 1px;
-    border: none;
-    border-radius: 17px;
-    background-color: white;
-    position: relative;
-    z-index: 2;
-    cursor: pointer;
-    &::before{
-        content: ' ';
-        height: 100%;
-        width: 0%;
-        border-radius: 15px;
-        position: absolute;
-        left: 0;
-        top: 0;
-        z-index: -1;
-    }
-}
-
-.bodyFormEmailEdit button:hover {
-    &::before {
-        background-color: greenyellow;
-        transition: 0.2s ease;
-        width: 100%;
-        
-    }
-}
-/* *************** */
 
 /* MODAL PASSWORD EDIT */
 .modalPasswordEdit {
@@ -522,9 +436,9 @@ main {
     height: auto;
     padding: 15px;
     width: 370px;
-    background-image: url('../img/bgAlterarDados.jpeg');
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-image: url('../img/bgAlterarDados2.png');
+    background-size: 180%;
+    background-repeat: repeat;
     border-radius: 1rem;
     border: none;
 }
@@ -618,3 +532,7 @@ main {
 /* ******************* */
 
 /* ************* */
+
+
+
+

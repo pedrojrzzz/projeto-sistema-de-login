@@ -67,6 +67,7 @@ const changeName = async function (req, res) {
                 exp: expirationTime7Days,
                 data: payload
             }, process.env.jwtSecret)
+            req.session.user = token
             res.locals.updateUserInfo2(token)
             console.log(res.locals.userInfo)
             req.flash('success', 'Nome alterado com sucesso')
