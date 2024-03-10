@@ -8,6 +8,7 @@ const loginController = require('./src/controllers/loginController')
 const recuperarSenhaController = require('./src/controllers/recuperarSenhaController')
 const recuperarSenhaController2 = require('./src/controllers/recuperarSenhaController2')
 const alterarDadosController = require('./src/controllers/alterarDadosController')
+const adminController = require('./src/controllers/adminController')
 
 //Rotas index
 route.get('/', homeController.rendPaginaInicial)
@@ -42,9 +43,8 @@ route.get('/changeEmailConfirm/:tokenChangeEmail', alterarDadosController.change
 route.post('/changePasswordUser', alterarDadosController.changePassword)
 
 // Rotas de administrador
-route.get('/administrativePanel', (req, res)=> {
-    res.render('administrativePanel')
-})
+route.get('/administrativePanel', adminController.rendAdministrativePanel)
+route.get('/administrativePanelUsers', adminController.rendAdminPanelUser)
 
 
 // Rotas de error 404

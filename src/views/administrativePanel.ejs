@@ -1,38 +1,90 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel Administrativo</title>
     <link rel="stylesheet" href="./assets/css/styleAdm.css">
 </head>
+
 <body>
 
 
-<div class="top-menu">
-    <div class="logo"></div>
-    <div class="titulo" background-color: yellow;">Painel Administrativo</div>
-    <div></div>
-    
-    
-</div>
+    <div class="top-menu">
+        <div class="logo"></div>
+        <div class="titulo" background-color: yellow;">Painel Administrativo</div>
+        <div></div>
 
-<div class="teste-grid">
 
-<div class="menu-lateral">
+    </div>
 
-    <li><a href="">Usuários</a></li>
-    <li><a href="">Produtos</a></li>
-    <li><a href="">Configurações</a></li>
+    <div class="teste-grid">
 
-</div>
+        <div class="menu-lateral">
 
-    <main>
-       <div class="qtdUsers">Usuários cadastrados</div>
-       <div class="qtdVisitors">Quantidade de visitantes</div>
-       <div class="qtsPages">Quantidade de páginas</div>
-       <div class="qtdPosts">Quantidade de posts</div>
-    </main>
-</div>
+            <li><a href="/administrativePanelUsers">Usuários</a></li>
+            <li><a href="">Produto</a></li>
+            <li><a href="">Configurações</a></li>
+
+        </div>
+
+        <main>
+            <div class="qtdUsers">Usuários cadastrados
+                <div class="qtdUsersLogo"></div>
+                <div class="qtdUserNumber"><%- qtdRegisteredUsers %></div>
+            </div>
+
+            <div class="qtdVisitors">Quantidade de visitantes
+                <div class="qtdVisitorsLogo"></div>
+                <div class="qtdVisitorsNumber"><%- visitCount %></div>
+            </div>
+
+            <div class="qtdPages">Quantidade de páginas
+                <div class="qtdPagesLogo"></div>
+                <div class="qtdPagesNumber">8</div>
+            </div>
+
+
+            <div class="qtdPosts">Quantidade de posts
+                <div class="qtdPostsLogo"></div>
+                <div class="qtdPostsNumber">0</div>
+            </div>
+        </main>
+
+        <div class="aboutProject">
+            <h2>Sobre o projeto</h2>
+            <p>um sistema de login robusto e seguro, oferecendo uma experiência abrangente para os usuários, com funcionalidades adicionais para garantir a segurança e a comodidade. Abaixo estão os principais recursos do sistema:</p>
+            <ul>
+                <li>Autenticação Segura</li>
+                <li>Confirmação de E-mail</li>
+                <li>Recuperação de Conta por E-mail</li>
+                <li>Alteração de Dados do Usuário</li>
+                <li>Painel Administrativo</li>
+                <li>Segurança em Todas as Etapas</li>
+                <li>Interface Intuitiva e Responsiva</li>
+            </ul>
+        </div>
+
+        <div class="socialLinks">
+            <h2>Redes Sociais</h2>
+            <div class="divEmail">
+                <div class="logoEmail"></div><p>pedro_alv12@hotmail.com</p>
+            </div>
+
+            <div class="divGithub">
+                <div class="logoGithub"></div><a href="">GitHub</a>
+            </div>
+
+            <div class="divLinkedin">
+                <div class="logoLinkedin"></div><a href="">Linkedin</a>
+            </div>
+
+            <div class="divInstagram">
+                <div class="logoInstagram"></div><a href="">Instagram</a>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>

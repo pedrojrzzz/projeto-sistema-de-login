@@ -74,6 +74,8 @@ app.use(meusMiddlewares.csrfMiddleware)
 app.use(meusMiddlewares.checkCsrfError)
 const usuarioMiddleware = require('./src/middlewares/usuarioMiddleware')
 app.use(usuarioMiddleware.userMiddleware)
+const pageAdminMiddleware = require('./src/middlewares/pageAdminMiddleware')
+app.use(pageAdminMiddleware.pageAdminMiddleware)
 
 
 

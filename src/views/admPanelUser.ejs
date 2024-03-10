@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo</title>
+    <link rel="stylesheet" href="./assets/css/styleAdmUser.css">
+</head>
+<body>
+
+
+<div class="top-menu">
+    <div class="logo"></div>
+    <div class="titulo">Painel Administrativo</div>
+    <div></div>
+    
+    
+</div>
+
+<div class="mantendoLadoALado">
+
+<div class="menu-lateral">
+    <li><a href="/administrativePanel">Painel administrativo</a></li>
+    <li class="MenuSelected"><a href="/administrativePanel/users">Usuários</a></li>
+    <li><a href="">Produtos</a></li>
+    <li><a href="">Configurações</a></li>
+
+</div>
+<% if (usersData && usersData.length > 0) { %>
+<div class="userContainer">
+        <% for (let i = 0; i < usersData.length; i++) {%>
+            <div class="usersLocale">
+                <p>ID: <%= usersData[i].id%></p>
+                <p>Nome: <%= usersData[i].name%></p>
+                <p>Email: <%= usersData[i].email%></p>
+                <p>Confirmed Account: <%= usersData[i].confirmedAccount%></p>
+                <p>Type Account: <%= usersData[i].typeAccount%></p>
+            </div>
+            <% }%>
+        </div>
+    </div>
+    <% } %>
+</body>
+</html>
