@@ -38,20 +38,17 @@ app.set('view engine', 'ejs') // Dizendo ao express que engine ele vai usar
 app.use(cookieParser()) //É um middleware utilizado para analisar os cookies enviados pelo navegador do cliente junto com as solicitações HTTP.
                         //Ele processa os cookies e os torna acessíveis no objeto req.cookies.
 
+const mongoClient = new MongoClient(process.env.connectionString)
 
 app.use(session({                                         //configura o middleware de sessão (session)
     store: MongoStore.create({                            // é usado para criar uma instância do MongoStore e é configurado com uma instância do cliente MongoDB 
-    client: new MongoClient(process.env.connectionString),// (MongoClient) usando a string de conexão fornecida no ambiente (process.env.connectionString).
-    mongoOptions: {
-                    useNewUrlParser: true,
-                    useUnifiedTopology: true,
-                  }
+    client: mongoClient,// (MongoClient) usando a string de conexão fornecida no ambiente (process.env.connectionString).
                             }),
     secret: 'hello',                 //secret: Define uma chave secreta usada para assinar os cookies de sessão, é usada para garantir a integridade dos dados da sessão.
     resave: false,                  // resave: Configurado como false. Isso significa que a sessão não será regravada no armazenamento se não houver alterações durante uma solicitação.
     saveUninitialized: false,       //saveUninitialized: Isso significa que a sessão não será salva para armazenamento se não houver dados na sessão. Isso ajuda a economizar espaço de armazenamento quando a sessão não tem dados.                        
     cookie: {              // cookie (configurações do cookie de sessão):
-              maxAge: 1000 * 60 * 60 * 27 * 7,  // maxAge: Define a vida útil máxima do cookie de sessão em milissegundos. Neste caso, o valor é configurado para 7 dias.
+              maxAge: 1000 * 60 * 60 * 24 * 7,  // maxAge: Define a vida útil máxima do cookie de sessão em milissegundos. Neste caso, o valor é configurado para 7 dias.
               httpOnly: true,        // httpOnly: Configurado como true. Isso indica que o cookie só pode ser acessado por meio do protocolo HTTP e não pode ser manipulado por scripts do lado do cliente, o que ajuda a mitigar ataques XSS (Cross-Site Scripting).
               secure: false     // secure: Configurado como false. Isso indica que o cookie só será enviado por meio de conexões HTTP, não HTTPS. Em um ambiente de produção, você normalmente configuraria isso como true se estiver usando HTTPS.
             }
